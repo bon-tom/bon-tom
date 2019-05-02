@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.400"?>
+<GlobalVariables>
+  <Name value="globalVariables" />
+  <Children>
+    <Attribute>
+      <Name value="errorMessage" />
+      <Caption value="Error message" />
+      <DeclaredType>
+        <AttributeType />
+      </DeclaredType>
+    </Attribute>
+  </Children>
+</GlobalVariables>
