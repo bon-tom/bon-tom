@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.400"?>
+<Form>
+  <Name value="movieDetail" />
+  <Caption value="Movie detail" />
+  <Content>
+    <Panel>
+      <Name value="panel1" />
+      <Orientation value="Vertical" />
+      <Panel.Height value="#" />
+      <Panel.Width value="*" />
+      <OnClick>
+        <ActionEvent ReferencedAction="~goToMovies1" />
+      </OnClick>
+      <Children>
+        <Button>
+          <Name value="goBacktoRecordList" />
+          <Caption value="Go back to Record list" />
+          <Panel.Height value="#" />
+          <Panel.Width value="150px" />
+          <OnClick>
+            <ActionEvent ReferencedAction="~goToMovies1" />
+          </OnClick>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-button" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Button>
+        <Button>
+          <Name value="editRecord" />
+          <Caption value="Edit record" />
+          <Panel.Height value="#" />
+          <Panel.Width value="150px" />
+          <OnClick>
+            <ActionEvent ReferencedAction="~handler_editRecord_OnClick" />
+          </OnClick>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-button" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Button>
+        <Button>
+          <Name value="deleteOneRecord" />
+          <Caption value="Delete one record" />
+          <Panel.Height value="#" />
+          <Panel.Width value="150px" />
+          <OnClick>
+            <ActionEvent ReferencedAction="~deleteRecord" />
+          </OnClick>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-button" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Button>
+        <LabeledText identity="labeledText.a92a691d6915448ebf9f0b804ce6a733">
+          <Name value="labeledText1" />
+          <Panel.Height value="#" />
+          <Panel.Width value="*" />
+          <Bindings>
+            <Binding SourceProperty="Data" Expression="complex1.name" />
+            <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.name.isRequired()" />
+            <Binding SourceProperty="Caption" Expression="complex1.name.caption()" />
+          </Bindings>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-labeledtext" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </LabeledText>
+        <LabeledText identity="labeledText.a92a691d6915448ebf9f0b804ce6a733">
+          <Name value="labeledText2" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <Bindings>
+            <Binding SourceProperty="Data" Expression="complex1.yearOfRelease" />
+            <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.yearOfRelease.isRequired()" />
+            <Binding SourceProperty="Caption" Expression="complex1.yearOfRelease.caption()" />
+          </Bindings>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-labeledtext" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </LabeledText>
+        <LabeledText identity="labeledText.a92a691d6915448ebf9f0b804ce6a733">
+          <Name value="labeledText3" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <Bindings>
+            <Binding SourceProperty="Data" Expression="complex1.type" />
+            <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.type.isRequired()" />
+            <Binding SourceProperty="Caption" Expression="complex1.type.caption()" />
+          </Bindings>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-labeledtext" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </LabeledText>
+        <LabeledText identity="labeledText.a92a691d6915448ebf9f0b804ce6a733">
+          <Name value="labeledText4" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <Bindings>
+            <Binding SourceProperty="Data" Expression="complex1.mainDirector" />
+            <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.mainDirector.isRequired()" />
+            <Binding SourceProperty="Caption" Expression="complex1.mainDirector.caption()" />
+          </Bindings>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-labeledtext" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </LabeledText>
+        <LabeledText identity="labeledText.a92a691d6915448ebf9f0b804ce6a733">
+          <Name value="labeledText5" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <Bindings>
+            <Binding SourceProperty="Data" Expression="complex1.description" />
+            <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.description.isRequired()" />
+            <Binding SourceProperty="Caption" Expression="complex1.description.caption()" />
+          </Bindings>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-labeledtext" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </LabeledText>
+      </Children>
+      <CssClass>
+        <CssClassConditional>
+          <ClassName value="{theme}-panel" />
+          <IsThemedStyle value="True" />
+        </CssClassConditional>
+      </CssClass>
+    </Panel>
+  </Content>
+  <DataContext>
+    <DataContext>
+      <Children>
+        <Attribute>
+          <Name value="id" />
+          <Caption value="Id" />
+          <DataContextParameter.IsInput value="True" />
+          <DataContextParameter.IsInputRequired value="True" />
+          <DeclaredType>
+            <AttributeType />
+          </DeclaredType>
+        </Attribute>
+        <Complex>
+          <Name value="complex1" />
+          <Caption value="Complex 1" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.Movies" />
+            </Include>
+          </Children>
+        </Complex>
+        <Complex>
+          <Name value="deleteComplex" />
+          <Caption value="Delete complex" />
+          <Children>
+            <Attribute>
+              <Name value="id" />
+              <Caption value="Id" />
+              <DeclaredType>
+                <AttributeType />
+              </DeclaredType>
+            </Attribute>
+          </Children>
+        </Complex>
+      </Children>
+    </DataContext>
+  </DataContext>
+  <OnActivate>
+    <ActionEvent ReferencedAction="~loadSingleRecord" />
+  </OnActivate>
+  <Actions>
+    <ActionBlock>
+      <Name value="initmovieDetail" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[//var response = apiobjects.serverForMovies.getAsync("record")
+//respon
+//system.console(tostring(response))
+
+/*
+var response = apiobjects.serverForMovies.getAsync("record")
+//respon
+//system.console(response)
+
+
+if response.isError() then
+	globals.errorMessage = response.getErrorMessage()
+else
+	//system.console(response.extractJson())
+	//form.collection1.fromJson(response.extractJson("id"))
+	//form.collection1.fromJson(response.extractJson("name"))
+	system.console(response.getJsonString())
+	
+	//form.Movies.fromJson(response.getJsonString())
+	
+	form.collection1.fromJson(response.getJsonString())
+	//form.complex1.fromJson(response.getJsonString())
+	
+	
+endif
+*/
+
+//var data = actions.loadSingleCard(form.id)
+//form.card.fromJson(data)
+
+//var data = actions.loadSingleCard(form.multiverseid)
+//form.card.fromJson(data)]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="goToMovies1" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[navigation.main.movies1.go("")]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="loadSingleRecord" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[//var response = apiobjects.magicApi.getAsync("cards/" + tostring(this.multiverseid))
+var response = apiobjects.serverForMovies.getAsync("record?id=" +tostring(this.form.id))
+
+if response.isError() then
+	system.consoleError(response.getErrorMessage())	
+else
+//	result = response.extractJson("card")
+//	result = response.extractJson("record/")
+	
+	system.console(response.getJsonString())
+	
+	var codeListData = response.getJsonString()
+	
+	system.console(codeListData)
+	
+	//form.apiobjects.fillFromJson(codeListData)
+	form.complex1.fromJson(codeListData)
+endif]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="deleteRecord" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[//apiobjects.serverForMovies.postAsync()
+//apiobjects.serverForMovies.postAsync("delete", form.complex1.fromJson())
+/*
+var item = form.collection1.addItem()
+
+//item.id = form.complex1.id
+item.name = form.complex1.name
+item.yearOfRelease = form.complex1.yearOfRelease
+
+item.type = form.complex1.type
+item.mainDirector = form.complex1.mainDirector
+item.description = form.complex1.description
+
+
+// //////////////////////////////////////////////////
+//var messageJson = form.complex1.toJson()
+var messageJson = item.toJson()
+
+*/
+
+//form.complex1.id = params.data.id
+form.deleteComplex.id = form.id
+system.console("vypsani" +tostring(form.deleteComplex.toJson()))
+var response = apiobjects.serverForMovies.postAsync("delete", form.deleteComplex.toJson())
+
+
+if response.isError() then
+	globals.errorMessage = response.getErrorMessage()
+else
+	system.console("uspesne mazani")
+endif
+//var item = "id=" + form.id 
+//var item
+
+//var item = "{id=" + form.id + "}"
+//var response = apiobjects.serverForMovies.postAsync("delete", form.id.toJson())]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="handler_editRecord_OnClick" />
+      <IsPrivate value="True" />
+      <ActionLangBody>
+        <Script><![CDATA[navigation.main.editRecord.go(params.data.id)]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+  </Actions>
+</Form>

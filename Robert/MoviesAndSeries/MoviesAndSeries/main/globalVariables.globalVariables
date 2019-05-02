@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.400"?>
+<GlobalVariables>
+  <Name value="globalVariables" />
+  <Children>
+    <Attribute>
+      <Name value="errorMessage" />
+      <Caption value="Error message" />
+      <DeclaredType>
+        <AttributeType />
+      </DeclaredType>
+    </Attribute>
+    <Collection>
+      <Name value="collection1" />
+      <Caption value="Collection 1" />
+      <Children>
+        <Include>
+          <Include reference="+DataEntities.Movies" />
+        </Include>
+      </Children>
+    </Collection>
+  </Children>
+</GlobalVariables>
