@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.400"?>
+<Form>
+  <Name value="movieSearching" />
+  <Caption value="Movie searching" />
+  <Content>
+    <Panel>
+      <Name value="panel1" />
+      <Orientation value="Vertical" />
+      <Panel.Height value="#" />
+      <Panel.Width value="*" />
+      <Children>
+        <Button>
+          <Name value="goBack" />
+          <Caption value="Go back" />
+          <Panel.Height value="#" />
+          <Panel.Width value="150px" />
+          <OnClick>
+            <ActionEvent ReferencedAction="~goBackWithoutSearching" />
+          </OnClick>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-button" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Button>
+        <Label>
+          <Name value="SearchString" />
+          <Data value="Search string" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-label" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Label>
+        <TextBox>
+          <Name value="textBox1" />
+          <CaptionVAlign value="Middle" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <Bindings>
+            <Binding SourceProperty="Data" Expression="name" />
+            <Binding SourceProperty="IsRequiredMarkVisible" Expression="name.isRequired()" />
+            <Binding SourceProperty="Caption" Expression="name.caption()" />
+          </Bindings>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-textbox" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </TextBox>
+        <Button>
+          <Name value="searchRecords" />
+          <Caption value="Search records" />
+          <Panel.Height value="#" />
+          <Panel.Width value="150px" />
+          <OnClick>
+            <ActionEvent ReferencedAction="~action1" />
+          </OnClick>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-button" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Button>
+      </Children>
+      <CssClass>
+        <CssClassConditional>
+          <ClassName value="{theme}-panel" />
+          <IsThemedStyle value="True" />
+        </CssClassConditional>
+      </CssClass>
+    </Panel>
+  </Content>
+  <DataContext>
+    <DataContext>
+      <Children>
+        <Attribute>
+          <Name value="name" />
+          <Caption value="Name" />
+          <DeclaredType>
+            <AttributeType />
+          </DeclaredType>
+        </Attribute>
+      </Children>
+    </DataContext>
+  </DataContext>
+  <Actions>
+    <ActionBlock>
+      <Name value="goBackWithoutSearching" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[navigation.main.movies1.go("")]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="action1" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[navigation.main.resultofSearching.go(form.name)]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+  </Actions>
+</Form>
