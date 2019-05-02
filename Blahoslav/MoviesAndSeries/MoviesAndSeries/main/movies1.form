@@ -46,7 +46,7 @@
           <Panel.Height value="#" />
           <Panel.Width value="150px" />
           <OnClick>
-            <ActionEvent ReferencedAction="~action1" />
+            <ActionEvent ReferencedAction="~orderByYearOfRelease" />
           </OnClick>
           <CssClass>
             <CssClassConditional>
@@ -56,10 +56,13 @@
           </CssClass>
         </Button>
         <Button>
-          <Name value="button2" />
-          <Caption value="Button 2" />
+          <Name value="sortByName" />
+          <Caption value="Sort by name" />
           <Panel.Height value="#" />
           <Panel.Width value="150px" />
+          <OnClick>
+            <ActionEvent ReferencedAction="~orderByName" />
+          </OnClick>
           <CssClass>
             <CssClassConditional>
               <ClassName value="{theme}-button" />
@@ -81,7 +84,7 @@
         </Button>
         <Panel>
           <Name value="panel4" />
-          <Orientation value="Vertical" />
+          <Orientation value="Horizontal" />
           <Panel.Height value="#" />
           <Panel.Width value="*" />
           <CssClass>
@@ -394,8 +397,17 @@
           </Children>
         </Complex>
         <Collection>
-          <Name value="collToSearch" />
-          <Caption value="Coll to search" />
+          <Name value="resOfOrder" />
+          <Caption value="Res Of Ordering" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.Movies" />
+            </Include>
+          </Children>
+        </Collection>
+        <Collection>
+          <Name value="collToOrder" />
+          <Caption value="Coll to order" />
           <Children>
             <Include>
               <Include reference="+DataEntities.Movies" />
@@ -555,9 +567,38 @@ endif
       </DataContext>
     </ActionBlock>
     <ActionBlock>
-      <Name value="action1" />
+      <Name value="orderByYearOfRelease" />
       <ActionLangBody IsValid="True">
-        <Script><![CDATA[form.collToSearch.orderBy(current.yearOfRelease, true)]]></Script>
+        <Script><![CDATA[//form.collToSearch.orderBy(current.yearOfRelease, true).toJson()
+//system.console(selectionofMovies)
+
+var resOfOrder = form.selectionofMovies.orderBy(current.yearOfRelease, true).toJson()
+//var resOfOrder = form.collToOrder.orderBy(current.yearOfRelease, true).toJson()
+
+system.console(resOfOrder)
+
+form.selectionofMovies.fromJson(resOfOrder)
+//form.selectionofMovies = resOfOrder
+//mít zdrojovou kolekci, kterou řadím; novou kolekci, do které ukládám
+]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="orderByName" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[//form.collToSearch.orderBy(current.yearOfRelease, true).toJson()
+//system.console(selectionofMovies)
+
+var resNameOfOrder = form.selectionofMovies.orderBy(current.name, true).toJson()
+//var resOfOrder = form.collToOrder.orderBy(current.yearOfRelease, true).toJson()
+
+system.console(resNameOfOrder)
+
+form.selectionofMovies.fromJson(resNameOfOrder)
+//form.selectionofMovies = resOfOrder]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />

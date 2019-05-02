@@ -69,6 +69,134 @@
             </CssClassConditional>
           </CssClass>
         </Button>
+        <DataTable>
+          <Name value="dataTable2" />
+          <Panel.Height value="#" />
+          <Panel.Width value="*" />
+          <Bindings>
+            <Binding SourceProperty="DataItems" Expression="collectionMovies" />
+          </Bindings>
+          <Columns>
+            <DataColumn>
+              <Name value="dataColumn3" />
+              <Caption value="Data column 3" />
+              <Content>
+                <Label>
+                  <Name value="label3" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="name" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-label" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Label>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+            <DataColumn>
+              <Name value="dataColumn4" />
+              <Caption value="Data column 4" />
+              <Content>
+                <Label>
+                  <Name value="label4" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="yearOfRelease" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-label" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Label>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+          </Columns>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-datatable" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </DataTable>
+        <DataTable>
+          <Name value="dataTable1" />
+          <Panel.Height value="#" />
+          <Panel.Width value="*" />
+          <Bindings>
+            <Binding SourceProperty="DataItems" Expression="collection1" />
+          </Bindings>
+          <Columns>
+            <DataColumn>
+              <Name value="dataColumn1" />
+              <Caption value="dataColumn1" />
+              <Content>
+                <Label>
+                  <Name value="label1" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="name" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-label" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Label>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+            <DataColumn>
+              <Name value="dataColumn2" />
+              <Caption value="Data column 2" />
+              <Content>
+                <Label>
+                  <Name value="label2" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="yearOfRelease" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-label" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Label>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+          </Columns>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-datatable" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </DataTable>
       </Children>
       <CssClass>
         <CssClassConditional>
@@ -88,6 +216,24 @@
             <AttributeType />
           </DeclaredType>
         </Attribute>
+        <Collection>
+          <Name value="collection1" />
+          <Caption value="Collection 1" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.Movies" />
+            </Include>
+          </Children>
+        </Collection>
+        <Collection>
+          <Name value="collectionMovies" />
+          <Caption value="Collection movies" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.Movies" />
+            </Include>
+          </Children>
+        </Collection>
       </Children>
     </DataContext>
   </DataContext>
@@ -104,7 +250,56 @@
     <ActionBlock>
       <Name value="action1" />
       <ActionLangBody IsValid="True">
-        <Script><![CDATA[navigation.main.resultofSearching.go(form.name)]]></Script>
+        <Script><![CDATA[/*
+vyhledávání od Helebranta
+var movieListJson = form.apiobjects.serverConnection1.getAsync("/list")
+if form.filter.name.hasValue() then
+    form.collectionMovies.clear()
+    var searchThisName = tolower(form.filter.name)
+    form.searchedMovies.fromJson(movieListJson.getJsonString())
+        foreach item in form.searchedMovies do
+            var itemNameLowerCase = tolower(item.name)
+            if indexOf(itemNameLowerCase, searchThisName) <> 0 then
+                var collectionItem = form.collectionMovies.addItem()
+                    collectionItem.id = item.id
+                    collectionItem.name = item.name
+                    collectionItem.type = item.type
+                    collectionItem.rating.score = item.rating.score
+                    collectionItem.yearOfRelease = item.yearOfRelease
+                    //collectionItem.starring = item.starring
+
+                    collectionItem.starring.fromJson(stars)
+            endif
+        endfor                    var stars = item.starring.toJson()
+        var x = form.collectionMovies.toJson()
+    else form.collectionMovies.fromJson(movieListJson.getJsonString())
+endif
+
+*/
+system.console(tostring(form.name))
+system.console(tostring(form.name.hasValue()))
+
+var movieListJson = apiobjects.serverForMovies.getAsync("list")
+
+if form.name.hasValue() then
+	//form.collection1.clear()
+	form.collection1.fromJson(movieListJson.getJsonString())
+	foreach item in form.collection1 do
+		if indexOf(item.name, form.name) <> 0 then
+			var collectionItem = form.collectionMovies.addItem()
+			collectionItem.name = item.name
+			collectionItem.yearOfRelease = item.yearOfRelease
+			
+			system.console("Cosik jsem aj našel")
+		endif
+		system.console("blablabla")
+	endfor
+	
+	var x = form.collectionMovies.toJson()
+endif
+
+
+]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />

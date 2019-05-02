@@ -17,5 +17,6 @@
     <PackageItem Src="movieSearching.form" />
     <PackageItem Src="movieEdit.form" />
     <PackageItem Src="resultofSearching.form" />
+    <PackageItem Src="orderedMovies.form" />
   </Items>
 </Package>
