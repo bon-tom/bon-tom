@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.400"?>
+<Form>
+  <Name value="movieSearched" />
+  <Content>
+    <Panel>
+      <Name value="panel1" />
+      <Orientation value="Vertical" />
+      <Panel.Height value="#" />
+      <Panel.Width value="*" />
+      <Children>
+        <GroupBox>
+          <Name value="groupBox2" />
+          <Panel.Height value="#" />
+          <Panel.Width value="*" />
+          <Bindings>
+            <Binding SourceProperty="Caption" Expression="collection1.caption()" />
+          </Bindings>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-groupbox" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </GroupBox>
+      </Children>
+      <CssClass>
+        <CssClassConditional>
+          <ClassName value="{theme}-panel" />
+          <IsThemedStyle value="True" />
+        </CssClassConditional>
+      </CssClass>
+    </Panel>
+  </Content>
+  <DataContext>
+    <DataContext>
+      <Children>
+        <Attribute>
+          <Name value="name" />
+          <Caption value="Name" />
+          <DataContextParameter.IsInput value="True" />
+          <DataContextParameter.IsInputRequired value="True" />
+          <DeclaredType>
+            <AttributeType />
+          </DeclaredType>
+        </Attribute>
+        <Collection>
+          <Name value="collection1" />
+          <Caption value="Collection 1" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.Movies" />
+            </Include>
+          </Children>
+        </Collection>
+        <Complex>
+          <Name value="filter" />
+          <Caption value="Filter" />
+          <Children>
+            <Attribute>
+              <Name value="mainDirector" />
+              <Caption value="Main director" />
+              <DeclaredType>
+                <AttributeType />
+              </DeclaredType>
+            </Attribute>
+          </Children>
+        </Complex>
+      </Children>
+    </DataContext>
+  </DataContext>
+  <OnActivate>
+    <ActionEvent ReferencedAction="~searchingByName" />
+  </OnActivate>
+  <Actions>
+    <ActionBlock>
+      <Name value="searchingByName" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[//system.console(tostring(this.form.yearOfRelease.hasValue()))
+system.console(tostring(this.form.name.hasValue()))
+//system.console(tostring(this.form.mainDirector.hasValue()))
+
+//system.console(tostring(this.form.mainDirector.hasValue()))
+//system.console(tostring(form.yearOfRelease))
+
+
+var filter = globals.collection2.where(true)
+if form.name.hasValue() then
+	filter = filter.where(current.name = form.name)
+endif
+]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="action2" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[navigation.main.movies1.go("")]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+  </Actions>
+</Form>

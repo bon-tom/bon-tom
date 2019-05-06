@@ -1,0 +1,559 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.400"?>
+<Form>
+  <Name value="movieSearching" />
+  <Caption value="Movie searching" />
+  <Content>
+    <Panel>
+      <Name value="panel1" />
+      <Orientation value="Vertical" />
+      <Panel.Height value="#" />
+      <Panel.Width value="*" />
+      <Children>
+        <Button>
+          <Name value="goBack" />
+          <Caption value="Go back" />
+          <Panel.Height value="#" />
+          <Panel.Width value="150px" />
+          <OnClick>
+            <ActionEvent ReferencedAction="~goBackWithoutSearching" />
+          </OnClick>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-button" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Button>
+        <Label>
+          <Name value="SearchString" />
+          <Data value="Search string" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-label" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Label>
+        <TextBox>
+          <Name value="textBox1" />
+          <CaptionVAlign value="Middle" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <Bindings>
+            <Binding SourceProperty="Data" Expression="name" />
+            <Binding SourceProperty="IsRequiredMarkVisible" Expression="name.isRequired()" />
+            <Binding SourceProperty="Caption" Expression="name.caption()" />
+          </Bindings>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-textbox" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </TextBox>
+        <ReferenceLookup identity="referenceLookup.10b2d4db46e641b5bba23b33e3568c2e">
+          <Name value="namewithPrompter" />
+          <Caption value="Name with Prompter" />
+          <DataApiObject reference="~movieName" />
+          <DisplayMember value="name" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <Tooltip value="Postupné zadávání názvu filmu" />
+          <Bindings>
+            <Binding SourceProperty="Data" Expression="filter.list" />
+          </Bindings>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-referencelookup" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </ReferenceLookup>
+        <TextBox>
+          <Name value="textBox2" />
+          <CaptionVAlign value="Middle" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <Bindings>
+            <Binding SourceProperty="Data" Expression="type" />
+            <Binding SourceProperty="IsRequiredMarkVisible" Expression="type.isRequired()" />
+            <Binding SourceProperty="Caption" Expression="type.caption()" />
+          </Bindings>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-textbox" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </TextBox>
+        <Button>
+          <Name value="searchRecords" />
+          <Caption value="Search records" />
+          <Panel.Height value="#" />
+          <Panel.Width value="150px" />
+          <OnClick>
+            <ActionEvent ReferencedAction="~action1" />
+          </OnClick>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-button" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Button>
+        <Button>
+          <Name value="RemoveAll" />
+          <Caption value="Remove all" />
+          <Panel.Height value="#" />
+          <Panel.Width value="150px" />
+          <OnClick>
+            <ActionEvent ReferencedAction="~action2" />
+          </OnClick>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-button" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Button>
+        <DataTable>
+          <Name value="dataTable2" />
+          <Panel.Height value="#" />
+          <Panel.Width value="*" />
+          <Bindings>
+            <Binding SourceProperty="DataItems" Expression="collectionMovies" />
+          </Bindings>
+          <Columns>
+            <DataColumn>
+              <Name value="name" />
+              <Caption value="Name" />
+              <Content>
+                <Label>
+                  <Name value="label3" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="name" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-label" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Label>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+            <DataColumn>
+              <Name value="yearOfRelease" />
+              <Caption value="Year of release" />
+              <Content>
+                <Label>
+                  <Name value="label4" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="yearOfRelease" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-label" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Label>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+            <DataColumn>
+              <Name value="typeOfRecord" />
+              <Caption value="Type of record" />
+              <Content>
+                <Label>
+                  <Name value="type" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="type" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-label" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Label>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+          </Columns>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-datatable" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </DataTable>
+        <DataTable>
+          <Name value="dataTable1" />
+          <Panel.Height value="#" />
+          <Panel.Width value="*" />
+          <Bindings>
+            <Binding SourceProperty="DataItems" Expression="collection1" />
+          </Bindings>
+          <Columns>
+            <DataColumn>
+              <Name value="dataColumn1" />
+              <Caption value="dataColumn1" />
+              <Content>
+                <Label>
+                  <Name value="label1" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="name" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-label" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Label>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+            <DataColumn>
+              <Name value="dataColumn2" />
+              <Caption value="Data column 2" />
+              <Content>
+                <Label>
+                  <Name value="label2" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="yearOfRelease" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-label" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Label>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+          </Columns>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-datatable" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </DataTable>
+      </Children>
+      <CssClass>
+        <CssClassConditional>
+          <ClassName value="{theme}-panel" />
+          <IsThemedStyle value="True" />
+        </CssClassConditional>
+      </CssClass>
+    </Panel>
+  </Content>
+  <DataContext>
+    <DataContext>
+      <Children>
+        <Attribute>
+          <Name value="name" />
+          <Caption value="Name" />
+          <DeclaredType>
+            <AttributeType />
+          </DeclaredType>
+        </Attribute>
+        <Attribute>
+          <Name value="dataJson" />
+          <Caption value="Data json" />
+          <DataContextParameter.IsInput value="True" />
+          <DataContextParameter.IsInputRequired value="True" />
+          <DeclaredType>
+            <AttributeType />
+          </DeclaredType>
+        </Attribute>
+        <Attribute>
+          <Name value="type" />
+          <Caption value="Type" />
+          <DeclaredType>
+            <AttributeType />
+          </DeclaredType>
+        </Attribute>
+        <Complex>
+          <Name value="filter" />
+          <Caption value="Filter" />
+          <Children>
+            <Reference>
+              <Name value="list" />
+              <Caption value="List" />
+              <Children>
+                <Attribute>
+                  <Name value="name" />
+                  <Caption value="Name" />
+                  <DeclaredType>
+                    <AttributeType />
+                  </DeclaredType>
+                </Attribute>
+                <Attribute>
+                  <Name value="id" />
+                  <Caption value="Id" />
+                  <DeclaredType>
+                    <AttributeType />
+                  </DeclaredType>
+                </Attribute>
+              </Children>
+            </Reference>
+          </Children>
+        </Complex>
+        <Collection>
+          <Name value="collection1" />
+          <Caption value="Collection 1" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.Movies" />
+            </Include>
+          </Children>
+        </Collection>
+        <Collection>
+          <Name value="collectionMovies" />
+          <Caption value="Collection movies" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.Movies" />
+            </Include>
+          </Children>
+        </Collection>
+      </Children>
+    </DataContext>
+  </DataContext>
+  <OnActivate>
+    <ActionEvent ReferencedAction="~action1" />
+  </OnActivate>
+  <Actions>
+    <ActionBlock>
+      <Name value="goBackWithoutSearching" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[navigation.main.movies1.go("")]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="action1" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[/*
+vyhledávání od Helebranta
+var movieListJson = form.apiobjects.serverConnection1.getAsync("/list")
+if form.filter.name.hasValue() then
+    form.collectionMovies.clear()
+    var searchThisName = tolower(form.filter.name)
+    form.searchedMovies.fromJson(movieListJson.getJsonString())
+        foreach item in form.searchedMovies do
+            var itemNameLowerCase = tolower(item.name)
+            if indexOf(itemNameLowerCase, searchThisName) <> 0 then
+                var collectionItem = form.collectionMovies.addItem()
+                    collectionItem.id = item.id
+                    collectionItem.name = item.name
+                    collectionItem.type = item.type
+                    collectionItem.rating.score = item.rating.score
+                    collectionItem.yearOfRelease = item.yearOfRelease
+                    //collectionItem.starring = item.starring
+
+                    collectionItem.starring.fromJson(stars)
+            endif
+        endfor                    var stars = item.starring.toJson()
+        var x = form.collectionMovies.toJson()
+    else form.collectionMovies.fromJson(movieListJson.getJsonString())
+endif
+
+*/
+system.console(form.dataJson)
+
+form.apiobjects.movieName.fillFromJson(form.dataJson)
+
+//var source = tostring(form.dataJson)
+//form.name = tostring(source)
+
+if form.name.hasValue() then
+	//form.collection1.clear()
+	form.collection1.fromJson(form.dataJson)
+
+	foreach item in form.collection1 do
+		if indexOf(item.name, form.name) <> 0 then
+			var collectionItem = form.collectionMovies.addItem()
+			
+			collectionItem.name = item.name
+			collectionItem.yearOfRelease = item.yearOfRelease
+			collectionItem.type = item.type
+			collectionItem.mainDirector = item.mainDirector
+			
+			system.console("Cosik jsem aj našel podle částečného jména")
+		endif
+		system.console("blablabla")
+	endfor
+	
+	var x = form.collectionMovies.toJson()
+endif
+
+//var movieListJson = apiobjects.serverForMovies.getAsync("list")
+
+/*
+system.console(tostring(form.name))
+system.console(tostring(form.name.hasValue()))
+
+
+
+if form.name.hasValue() then
+	//form.collection1.clear()
+	form.collection1.fromJson(movieListJson.getJsonString())
+	foreach item in form.collection1 do
+		if indexOf(item.name, form.name) <> 0 then
+			var collectionItem = form.collectionMovies.addItem()
+			
+			collectionItem.name = item.name
+			collectionItem.yearOfRelease = item.yearOfRelease
+			collectionItem.type = item.type
+			collectionItem.mainDirector = item.mainDirector
+			
+			system.console("Cosik jsem aj našel podle částečného jména")
+		endif
+		system.console("blablabla")
+	endfor
+	
+	var x = form.collectionMovies.toJson()
+endif
+*/
+
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
+
+/*
+system.console(tostring(form.type))
+system.console(tostring(form.type.hasValue()))
+
+system.console(tostring(form.name))
+system.console(tostring(form.name.hasValue()))
+
+//var movieListJson = apiobjects.serverForMovies.getAsync("list")
+
+if form.type.hasValue() OR form.name.hasValue() then
+	//form.collection1.clear()
+	system.console("Jméno, nebo typ")
+	form.collection1.fromJson(movieListJson.getJsonString())
+	
+	foreach item in form.collection1 do
+	    system.console("Pom " + toString(indexOf(item.name, form.name) <> 0))
+		if ( (indexOf(item.type, form.type) <> 0) OR (indexOf(item.name, form.name) <> 0) ) then
+			var collectionItem = form.collectionMovies.addItem()
+			
+			collectionItem.name = item.name
+			collectionItem.yearOfRelease = item.yearOfRelease
+			collectionItem.type = item.type
+						
+			system.console("Cosik jsem aj našel podle druhu díla, nebo jména")
+		endif
+		system.console("blablabla")
+	endfor
+	
+	var x = form.collectionMovies.toJson()
+endif
+*/
+
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
+
+//if form.type.hasValue() OR form.name.hasValue() then
+/*
+if form.name.hasValue() then
+	//form.collection1.clear()
+	system.console("Jméno, nebo typ")
+	form.collection1.fromJson(movieListJson.getJsonString())
+	
+	foreach item in form.collection1 do
+	    system.console("Pom " + toString(indexOf(item.name, form.name) <> 0))
+		//if ( (indexOf(item.type, form.type) <> 0) OR (indexOf(item.name, form.name) <> 0) ) then
+		if ( (indexOf(item.name, form.name) <> 0) ) then
+			var collectionItem = form.collectionMovies.addItem()
+			
+			collectionItem.name = item.name
+			collectionItem.yearOfRelease = item.yearOfRelease
+			collectionItem.type = item.type
+						
+			system.console("Cosik jsem aj našel podle jména")
+		endif
+		system.console("blablabla")
+	endfor
+	
+	var x = form.collectionMovies.toJson()
+endif
+*/]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="action2" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[form.clear()]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+  </Actions>
+  <ApiObjects>
+    <Codelist identity="Codelist.2fd2d7af4a6d445bad8a58610632f8e0">
+      <Name value="movieName" />
+      <autoLoad value="False" />
+      <filterByDate value="False" />
+      <name value="list" />
+      <server reference="+GlobalApiObjects.serverForMovies" />
+      <columns>
+        <CodelistColumn identity="Codelist.2fd2d7af4a6d445bad8a58610632f8e0">
+          <columnName value="id" />
+          <columnRole value="Key" />
+        </CodelistColumn>
+        <CodelistColumn identity="Codelist.2fd2d7af4a6d445bad8a58610632f8e0">
+          <columnName value="name" />
+          <columnRole value="Description" />
+        </CodelistColumn>
+      </columns>
+    </Codelist>
+    <DeclListQuery identity="DeclListQuery.f41d2c211a8f43618588763e63b56065">
+      <Name value="declListQuery1" />
+      <listName value="list" />
+      <server reference="+GlobalApiObjects.serverForMovies" />
+    </DeclListQuery>
+  </ApiObjects>
+</Form>
