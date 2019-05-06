@@ -117,6 +117,69 @@
                 </CssClassConditional>
               </CssClass>
             </TextBox>
+            <Panel>
+              <Name value="ratingMovie" />
+              <Orientation value="Vertical" />
+              <Panel.Height value="#" />
+              <Panel.Width value="*" />
+              <Children>
+                <DatePicker>
+                  <Name value="datePicker1" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="300px" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="complex1.rating.dateOfWatching" />
+                    <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.rating.dateOfWatching.isRequired()" />
+                    <Binding SourceProperty="Caption" Expression="complex1.rating.dateOfWatching.caption()" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-datepicker" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </DatePicker>
+                <CheckBox>
+                  <Name value="checkBox1" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="300px" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="complex1.rating.seenItWhole" />
+                    <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.rating.seenItWhole.isRequired()" />
+                    <Binding SourceProperty="Caption" Expression="complex1.rating.seenItWhole.caption()" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-checkbox" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </CheckBox>
+                <TextBox>
+                  <Name value="textBox4" />
+                  <CaptionVAlign value="Middle" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="300px" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="complex1.rating.score" />
+                    <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.rating.score.isRequired()" />
+                    <Binding SourceProperty="Caption" Expression="complex1.rating.score.caption()" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-textbox" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </TextBox>
+              </Children>
+              <CssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-panel" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </CssClass>
+            </Panel>
           </Children>
           <CssClass>
             <CssClassConditional>
@@ -193,6 +256,15 @@
             <AttributeType />
           </DeclaredType>
         </Attribute>
+        <Attribute>
+          <Name value="saveConfirm" />
+          <Caption value="Save confirm" />
+          <DeclaredType>
+            <AttributeType>
+              <BaseType value="Bool" />
+            </AttributeType>
+          </DeclaredType>
+        </Attribute>
         <Complex>
           <Name value="complex1" />
           <Caption value="Complex 1" />
@@ -200,6 +272,41 @@
             <Include>
               <Include reference="+DataEntities.Movies" />
             </Include>
+            <Complex>
+              <Name value="rating" />
+              <Caption value="Rating" />
+              <Children>
+                <Attribute>
+                  <Name value="dateOfWatching" />
+                  <Caption value="Date of watching" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="Date" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+                <Attribute>
+                  <Name value="seenItWhole" />
+                  <Caption value="Seen it whole" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="Bool" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+                <Attribute>
+                  <Name value="score" />
+                  <Caption value="Score" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="Integer" />
+                      <IntMax value="10" />
+                      <IntMin value="0" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+              </Children>
+            </Complex>
           </Children>
         </Complex>
         <Collection>
@@ -209,6 +316,41 @@
             <Include>
               <Include reference="+DataEntities.Movies" />
             </Include>
+            <Complex>
+              <Name value="rating" />
+              <Caption value="Rating" />
+              <Children>
+                <Attribute>
+                  <Name value="dateOfWatching" />
+                  <Caption value="Date of watching" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="Date" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+                <Attribute>
+                  <Name value="seenItWhole" />
+                  <Caption value="Seen it whole" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="Bool" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+                <Attribute>
+                  <Name value="score" />
+                  <Caption value="Score" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="Integer" />
+                      <IntMax value="10" />
+                      <IntMin value="0" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+              </Children>
+            </Complex>
           </Children>
         </Collection>
       </Children>
@@ -227,56 +369,45 @@
     <ActionBlock>
       <Name value="SaveToServer" />
       <ActionLangBody IsValid="True">
-        <Script><![CDATA[var item = form.collection1.addItem()
+        <Script><![CDATA[form.saveConfirm = apiobjects.page1.confirm("Do you really want to save all changes?")
 
-//item.id = form.complex1.id
-item.name = form.complex1.name
-item.yearOfRelease = form.complex1.yearOfRelease
+if form.saveConfirm = true then
+	var item = form.collection1.addItem()
 
-item.type = form.complex1.type
-item.mainDirector = form.complex1.mainDirector
-item.description = form.complex1.description
+	//item.id = form.complex1.id
+	item.name = form.complex1.name
+	item.yearOfRelease = form.complex1.yearOfRelease
+
+	item.type = form.complex1.type
+	item.mainDirector = form.complex1.mainDirector
+	item.description = form.complex1.description
+
+	item.rating.score = form.complex1.rating.score
+	item.rating.dateOfWatching = form.complex1.rating.dateOfWatching
+	item.rating.seenItWhole = form.complex1.rating.seenItWhole
 
 
-// //////////////////////////////////////////////////
-//var messageJson = form.complex1.toJson()
-var messageJson = item.toJson()
-//var messageJson = form.complex1.toJson()
 
-// url bude http://localhost:8080/
-//var response = form.apiobjects.serverForMovies.postAsync("post", messageJson)
 
-//var response = apiobjects.serverForMovies.postAsync("post", messageJson)
-var response = apiobjects.serverForMovies.postAsync("create", messageJson)
+	var messageJson = item.toJson()
+	var response = apiobjects.serverForMovies.postAsync("create", messageJson)
 
-if (response.isError()) then
-	system.consoleError(response.getErrorMessage())
-else 
-	form.postResult = response.getJsonString()
-	form.ContentType = response.getHeader("Content-Type")
-endif
-
+	if (response.isError()) then
+		system.consoleError(response.getErrorMessage())
+	else 
+		form.postResult = response.getJsonString()
+		form.ContentType = response.getHeader("Content-Type")
+	endif
+	
+	navigation.main.movies1.go("")
 // SuccessFull POSTING?
 
-
+else 
 //navigace na hlavní formulář
 navigation.main.movies1.go("")
-/*
-var messageJson = form.dataToPost.toJson()
 
-// url bude http://httpbin.org/post
-var response = form.apiobjects.httpBin.postAsync("post", messageJson)
-
-if (response.isError()) then
-	system.consoleError(response.getErrorMessage())
-else 
-	form.postResult = response.getJsonString()
-	form.ContentType = response.getHeader("Content-Type")
 endif
-
-*/
-
-//apiobjects.serverForMovies.postAsync("create", item)]]></Script>
+]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />

@@ -43,5 +43,21 @@
       <ReferencedIdentity value="Codelist.2fd2d7af4a6d445bad8a58610632f8e0" />
       <ReferencedVersion value="3.11.0" />
     </PackageReference>
+    <PackageReference Alias="Page" IsComponentLib="True" Origin="..\..\..\..\Downloads\sffw\dist\Page\Page.package">
+      <ReferencedIdentity value="Page.f7aa0c151c64407daef13910dcf7b72a" />
+      <ReferencedVersion value="1.6.1" />
+    </PackageReference>
+    <PackageReference Alias="UrlRouter" IsComponentLib="True" Origin="UrlRouter\UrlRouter.package">
+      <ReferencedIdentity value="UrlRouter.69a71809c45249cbb2999d13bb9100c0" />
+      <ReferencedVersion value="3.0.1" />
+    </PackageReference>
+    <PackageReference Alias="Breadcrumbs" IsComponentLib="True" Origin="Breadcrumbs\Breadcrumbs.package">
+      <ReferencedIdentity value="Breadcrumbs.4d3eeadca3c54f1caa1d677db7e07acb" />
+      <ReferencedVersion value="1.0.2" />
+    </PackageReference>
+    <PackageReference Alias="busyIndicator" IsComponentLib="True" Origin="BusyIndicator\BusyIndicator.package">
+      <ReferencedIdentity value="busyIndicator.4a8ce8836eb04d7bbc155c7119f0193e" />
+      <ReferencedVersion value="2.0.0" />
+    </PackageReference>
   </PackageReferences>
 </ProjectRoot>

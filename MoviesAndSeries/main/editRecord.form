@@ -118,6 +118,68 @@
                     </CssClassConditional>
                   </CssClass>
                 </LabeledText>
+                <Panel>
+                  <Name value="panel4" />
+                  <Orientation value="Vertical" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="*" />
+                  <Children>
+                    <DatePicker>
+                      <Name value="datePicker1" />
+                      <Panel.Height value="#" />
+                      <Panel.Width value="*" />
+                      <Bindings>
+                        <Binding SourceProperty="Data" Expression="complex1.rating.dateOfWatching" />
+                        <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.rating.dateOfWatching.isRequired()" />
+                        <Binding SourceProperty="Caption" Expression="complex1.rating.dateOfWatching.caption()" />
+                      </Bindings>
+                      <CssClass>
+                        <CssClassConditional>
+                          <ClassName value="{theme}-datepicker" />
+                          <IsThemedStyle value="True" />
+                        </CssClassConditional>
+                      </CssClass>
+                    </DatePicker>
+                    <CheckBox>
+                      <Name value="checkBox1" />
+                      <Panel.Height value="#" />
+                      <Panel.Width value="*" />
+                      <Bindings>
+                        <Binding SourceProperty="Data" Expression="complex1.rating.seenItWhole" />
+                        <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.rating.seenItWhole.isRequired()" />
+                        <Binding SourceProperty="Caption" Expression="complex1.rating.seenItWhole.caption()" />
+                      </Bindings>
+                      <CssClass>
+                        <CssClassConditional>
+                          <ClassName value="{theme}-checkbox" />
+                          <IsThemedStyle value="True" />
+                        </CssClassConditional>
+                      </CssClass>
+                    </CheckBox>
+                    <LabeledText identity="labeledText.a92a691d6915448ebf9f0b804ce6a733">
+                      <Name value="labeledText7" />
+                      <Panel.Height value="#" />
+                      <Panel.Width value="*" />
+                      <Bindings>
+                        <Binding SourceProperty="Data" Expression="complex1.rating.score" />
+                        <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.rating.score.isRequired()" />
+                        <Binding SourceProperty="Caption" Expression="complex1.rating.score.caption()" />
+                      </Bindings>
+                      <CssClass>
+                        <CssClassConditional>
+                          <ClassName value="{theme}-labeledtext" />
+                          <IsThemedStyle value="True" />
+                        </CssClassConditional>
+                      </CssClass>
+                    </LabeledText>
+                  </Children>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-panel" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Panel>
               </Children>
               <CssClass>
                 <CssClassConditional>
@@ -302,6 +364,41 @@
             <Include>
               <Include reference="+DataEntities.Movies" />
             </Include>
+            <Complex>
+              <Name value="rating" />
+              <Caption value="Rating" />
+              <Children>
+                <Attribute>
+                  <Name value="dateOfWatching" />
+                  <Caption value="Date of watching" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="Date" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+                <Attribute>
+                  <Name value="seenItWhole" />
+                  <Caption value="Seen it whole" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="Bool" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+                <Attribute>
+                  <Name value="score" />
+                  <Caption value="Score" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="Integer" />
+                      <IntMax value="10" />
+                      <IntMin value="0" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+              </Children>
+            </Complex>
           </Children>
         </Complex>
         <Collection>
@@ -311,17 +408,27 @@
             <Include>
               <Include reference="+DataEntities.Movies" />
             </Include>
+            <Complex>
+              <Name value="rating" />
+              <Caption value="Rating" />
+              <Children>
+                <Include>
+                  <Include reference="+DataEntities.RatingMovies" />
+                </Include>
+              </Children>
+            </Complex>
           </Children>
         </Collection>
       </Children>
     </DataContext>
   </DataContext>
   <OnActivate>
-    <ActionEvent ReferencedAction="~loadSingleRecord" />
+    <ActionEvent ReferencedAction="~loadSingleRecordII" />
   </OnActivate>
   <Actions>
     <ActionBlock>
       <Name value="loadSingleRecord" />
+      <IsDisabled value="True" />
       <ActionLangBody IsValid="True">
         <Script><![CDATA[var response = apiobjects.serverForMovies.getAsync("record?id=" +tostring(this.form.id))
 
@@ -339,7 +446,9 @@ else
 	
 	//form.apiobjects.fillFromJson(codeListData)
 	form.complex1.fromJson(codeListData)
-endif]]></Script>
+endif
+
+]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />
@@ -368,6 +477,11 @@ item.mainDirector = form.complex1.mainDirector
 item.description = form.complex1.description
 
 
+item.rating.seenItWhole = form.complex1.rating.seenItWhole
+
+item.rating.dateOfWatching = form.complex1.rating.dateOfWatching
+
+item.rating.score = form.complex1.rating.score
 // //////////////////////////////////////////////////
 //var messageJson = form.complex1.toJson()
 //var messageJson = item.toJson()
@@ -421,6 +535,31 @@ endif
 */
 
 //apiobjects.serverForMovies.postAsync("create", item)]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="loadSingleRecordII" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[var response = apiobjects.serverForMovies.getAsync("record?id=" +tostring(this.form.id))
+
+if response.isError() then
+	system.consoleError(response.getErrorMessage())	
+else
+//	result = response.extractJson("card")
+//	result = response.extractJson("record/")
+	
+	system.console(response.getJsonString())
+	
+	var codeListData = response.getJsonString()
+	
+	system.console(codeListData)
+	
+	//form.apiobjects.fillFromJson(codeListData)
+	form.complex1.fromJson(codeListData)
+endif]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />

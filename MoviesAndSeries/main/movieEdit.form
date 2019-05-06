@@ -142,6 +142,80 @@
                 </CssClassConditional>
               </CssClass>
             </TextBox>
+            <Panel>
+              <Name value="panel3" />
+              <Orientation value="Vertical" />
+              <Panel.Height value="#" />
+              <Panel.Width value="*" />
+              <Children>
+                <DatePicker>
+                  <Name value="datePicker1" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="*" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="complex1.rating.dateOfWatching" />
+                    <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.rating.dateOfWatching.isRequired()" />
+                    <Binding SourceProperty="Caption" Expression="complex1.rating.dateOfWatching.caption()" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-datepicker" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </DatePicker>
+                <CheckBox>
+                  <Name value="checkBox1" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="*" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="complex1.rating.seenItWhole" />
+                    <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.rating.seenItWhole.isRequired()" />
+                    <Binding SourceProperty="Caption" Expression="complex1.rating.seenItWhole.caption()" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-checkbox" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </CheckBox>
+                <TextBox>
+                  <Name value="textBox7" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="*" />
+                  <Bindings>
+                    <Binding SourceProperty="Data" Expression="complex1.rating.score" />
+                    <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.rating.score.isRequired()" />
+                    <Binding SourceProperty="Caption" Expression="complex1.rating.score.caption()" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-textbox" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </TextBox>
+                <Label>
+                  <Name value="label1" />
+                  <Data value="Zatím nemazat" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="300px" />
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-label" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Label>
+              </Children>
+              <CssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-panel" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </CssClass>
+            </Panel>
           </Children>
           <CssClass>
             <CssClassConditional>
@@ -162,6 +236,13 @@
   <DataContext>
     <DataContext>
       <Children>
+        <Attribute>
+          <Name value="id" />
+          <Caption value="Id" />
+          <DeclaredType>
+            <AttributeType />
+          </DeclaredType>
+        </Attribute>
         <Complex>
           <Name value="complex1" />
           <Caption value="Complex 1" />
@@ -169,6 +250,41 @@
             <Include>
               <Include reference="+DataEntities.Movies" />
             </Include>
+            <Complex>
+              <Name value="rating" />
+              <Caption value="Rating" />
+              <Children>
+                <Attribute>
+                  <Name value="dateOfWatching" />
+                  <Caption value="Date of watching" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="DateTime" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+                <Attribute>
+                  <Name value="seenItWhole" />
+                  <Caption value="Seen it whole" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="Bool" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+                <Attribute>
+                  <Name value="score" />
+                  <Caption value="Score" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="Integer" />
+                      <IntMax value="10" />
+                      <IntMin value="0" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+              </Children>
+            </Complex>
           </Children>
         </Complex>
       </Children>
@@ -179,6 +295,32 @@
       <Name value="goToMovies" />
       <ActionLangBody IsValid="True">
         <Script><![CDATA[navigation.main.movies1.go("")]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="action1" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[var response = apiobjects.serverForMovies.getAsync("record?id=" +tostring(this.form.id))
+
+if response.isError() then
+	system.consoleError(response.getErrorMessage())	
+else
+//	result = response.extractJson("card")
+//	result = response.extractJson("record/")
+	
+	system.console(response.getJsonString())
+	
+	var codeListData = response.getJsonString()
+	
+	system.console(codeListData)
+	
+	//form.apiobjects.fillFromJson(codeListData)
+	form.complex1.fromJson(codeListData)
+endif
+]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />

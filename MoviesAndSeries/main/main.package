@@ -16,5 +16,10 @@
     <PackageItem Src="editRecord.form" />
     <PackageItem Src="movieSearching.form" />
     <PackageItem Src="movieEdit.form" />
+    <PackageItem Src="Episodes.dataEntity" />
+    <PackageItem Src="RatingMovies.dataEntity" />
+    <PackageItem Src="Seasons.dataEntity" />
+    <PackageItem Src="RatingSeries.dataEntity" />
+    <PackageItem Src="Starring.dataEntity" />
   </Items>
 </Package>

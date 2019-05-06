@@ -314,6 +314,14 @@
             </CssClassConditional>
           </CssClass>
         </DataTable>
+        <BusyIndicator identity="busyIndicator.4a8ce8836eb04d7bbc155c7119f0193e">
+          <Name value="busyIndicator1" />
+          <Panel.Height value="#" />
+          <Panel.Width value="*" />
+          <Bindings>
+            <Binding SourceProperty="IsVisible" Expression="form._hasNoValue" />
+          </Bindings>
+        </BusyIndicator>
       </Children>
       <CssClass>
         <CssClassConditional>
@@ -326,6 +334,25 @@
   <DataContext>
     <DataContext>
       <Children>
+        <Computed>
+          <Name value="_hasNoValue" />
+          <Caption value="_ has no value" />
+          <Expression IsValid="True">
+            <ExpressionText><![CDATA[not form.selectionofMovies.hasValue()]]></ExpressionText>
+            <ResultType>
+              <BaseType value="Bool" />
+            </ResultType>
+          </Expression>
+        </Computed>
+        <Attribute>
+          <Name value="ascDesc" />
+          <Caption value="Asc desc" />
+          <DeclaredType>
+            <AttributeType>
+              <BaseType value="Bool" />
+            </AttributeType>
+          </DeclaredType>
+        </Attribute>
         <Attribute>
           <Name value="id" />
           <Caption value="Id" />
@@ -454,7 +481,19 @@
     <ActionBlock>
       <Name value="initMovieForm" />
       <ActionLangBody IsValid="True">
-        <Script><![CDATA[var response = apiobjects.serverForMovies.getAsync("list")
+        <Script><![CDATA[/*
+
+if apiobjects.breadcrumbsCtrl.count() = 0 then
+	apiobjects.breadcrumbsCtrl.addBreadcrumb("main", "Main", "", "", true)
+else
+	apiobjects.breadcrumbsCtrl.removeTo(1)
+endif
+
+apiobjects.urlRouter.clearUrl()
+*/
+
+apiobjects.urlRouter1.clearUrl()
+var response = apiobjects.serverForMovies.getAsync("list")
 
 //system.console(response)
 
@@ -477,15 +516,7 @@ else
 	
 endif
 
-/*
-
-if response.isError() then
-	globals.errorMessage = response.getErrorMessage()
-else
-	form.products.fromJson(response.extractJson("value"))
-endif
-
-*/]]></Script>
+]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />
@@ -602,7 +633,14 @@ endif
         <Script><![CDATA[//form.collToSearch.orderBy(current.yearOfRelease, true).toJson()
 //system.console(selectionofMovies)
 
-var resOfOrder = form.selectionofMovies.orderBy(current.yearOfRelease, true).toJson()
+if form.ascDesc = true then
+	form.ascDesc = false
+else
+	form.ascDesc = true
+endif
+
+//var resOfOrder = form.selectionofMovies.orderBy(current.yearOfRelease, true).toJson()
+var resOfOrder = form.selectionofMovies.orderBy(current.yearOfRelease, form.ascDesc).toJson()
 //var resOfOrder = form.collToOrder.orderBy(current.yearOfRelease, true).toJson()
 
 system.console(resOfOrder)
@@ -622,7 +660,14 @@ form.selectionofMovies.fromJson(resOfOrder)
         <Script><![CDATA[//form.collToSearch.orderBy(current.yearOfRelease, true).toJson()
 //system.console(selectionofMovies)
 
-var resNameOfOrder = form.selectionofMovies.orderBy(current.name, true).toJson()
+if form.ascDesc = true then
+	form.ascDesc = false
+else
+	form.ascDesc = true
+endif
+
+//var resNameOfOrder = form.selectionofMovies.orderBy(current.name, true).toJson()
+var resNameOfOrder = form.selectionofMovies.orderBy(current.name, form.ascDesc).toJson()
 //var resOfOrder = form.collToOrder.orderBy(current.yearOfRelease, true).toJson()
 
 system.console(resNameOfOrder)

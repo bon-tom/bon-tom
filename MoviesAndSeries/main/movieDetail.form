@@ -153,6 +153,84 @@
             </CssClassConditional>
           </CssClass>
         </LabeledText>
+        <Panel>
+          <Name value="panel2" />
+          <Orientation value="Vertical" />
+          <Panel.Height value="#" />
+          <Panel.Width value="*" />
+          <Children>
+            <DatePicker>
+              <Name value="datePicker1" />
+              <Panel.Height value="#" />
+              <Panel.Width value="*" />
+              <Bindings>
+                <Binding SourceProperty="Data" Expression="complex1.rating.dateOfWatching" />
+                <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.rating.dateOfWatching.isRequired()" />
+                <Binding SourceProperty="Caption" Expression="complex1.rating.dateOfWatching.caption()" />
+              </Bindings>
+              <CssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-datepicker" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </CssClass>
+            </DatePicker>
+            <CheckBox>
+              <Name value="checkBox1" />
+              <Panel.Height value="#" />
+              <Panel.Width value="*" />
+              <Bindings>
+                <Binding SourceProperty="Data" Expression="complex1.rating.seenItWhole" />
+                <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.rating.seenItWhole.isRequired()" />
+                <Binding SourceProperty="Caption" Expression="complex1.rating.seenItWhole.caption()" />
+              </Bindings>
+              <CssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-checkbox" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </CssClass>
+            </CheckBox>
+            <TextBox>
+              <Name value="textBox1" />
+              <Panel.Height value="#" />
+              <Panel.Width value="*" />
+              <Bindings>
+                <Binding SourceProperty="Data" Expression="complex1.rating.score" />
+                <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.rating.score.isRequired()" />
+                <Binding SourceProperty="Caption" Expression="complex1.rating.score.caption()" />
+              </Bindings>
+              <CssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-textbox" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </CssClass>
+            </TextBox>
+            <LabeledText identity="labeledText.a92a691d6915448ebf9f0b804ce6a733">
+              <Name value="labeledText7" />
+              <Panel.Height value="#" />
+              <Panel.Width value="*" />
+              <Bindings>
+                <Binding SourceProperty="Data" Expression="complex1.rating.score" />
+                <Binding SourceProperty="IsRequiredMarkVisible" Expression="complex1.rating.score.isRequired()" />
+                <Binding SourceProperty="Caption" Expression="complex1.rating.score.caption()" />
+              </Bindings>
+              <CssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-labeledtext" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </CssClass>
+            </LabeledText>
+          </Children>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-panel" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Panel>
       </Children>
       <CssClass>
         <CssClassConditional>
@@ -174,6 +252,22 @@
             <AttributeType />
           </DeclaredType>
         </Attribute>
+        <Attribute>
+          <Name value="url" />
+          <Caption value="Url" />
+          <DeclaredType>
+            <AttributeType />
+          </DeclaredType>
+        </Attribute>
+        <Attribute>
+          <Name value="deleteConfirm" />
+          <Caption value="Delete confirm" />
+          <DeclaredType>
+            <AttributeType>
+              <BaseType value="Bool" />
+            </AttributeType>
+          </DeclaredType>
+        </Attribute>
         <Complex>
           <Name value="complex1" />
           <Caption value="Complex 1" />
@@ -181,6 +275,41 @@
             <Include>
               <Include reference="+DataEntities.Movies" />
             </Include>
+            <Complex>
+              <Name value="rating" />
+              <Caption value="Rating" />
+              <Children>
+                <Attribute>
+                  <Name value="dateOfWatching" />
+                  <Caption value="Date of watching" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="Date" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+                <Attribute>
+                  <Name value="seenItWhole" />
+                  <Caption value="Seen it whole" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="Bool" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+                <Attribute>
+                  <Name value="score" />
+                  <Caption value="Score" />
+                  <DeclaredType>
+                    <AttributeType>
+                      <BaseType value="Integer" />
+                      <IntMax value="10" />
+                      <IntMin value="0" />
+                    </AttributeType>
+                  </DeclaredType>
+                </Attribute>
+              </Children>
+            </Complex>
           </Children>
         </Complex>
         <Complex>
@@ -255,7 +384,7 @@ endif
     <ActionBlock>
       <Name value="loadSingleRecord" />
       <ActionLangBody IsValid="True">
-        <Script><![CDATA[//var response = apiobjects.magicApi.getAsync("cards/" + tostring(this.multiverseid))
+        <Script><![CDATA[/*
 var response = apiobjects.serverForMovies.getAsync("record?id=" +tostring(this.form.id))
 
 if response.isError() then
@@ -272,7 +401,32 @@ else
 	
 	//form.apiobjects.fillFromJson(codeListData)
 	form.complex1.fromJson(codeListData)
-endif]]></Script>
+endif
+
+*/
+
+var response = apiobjects.serverForMovies.getAsync("record?id=" +tostring(this.form.id))
+
+if response.isError() then
+	system.consoleError(response.getErrorMessage())	
+else
+//	result = response.extractJson("card")
+//	result = response.extractJson("record/")
+	
+	system.console(response.getJsonString())
+	
+	var codeListData = response.getJsonString()
+	
+	system.console(codeListData)
+	
+	//form.apiobjects.fillFromJson(codeListData)
+	form.complex1.fromJson(codeListData)
+	
+	
+	system.console(tostring(form.complex1.rating.score))
+endif
+
+form.actions.setUrl()]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />
@@ -281,42 +435,28 @@ endif]]></Script>
     <ActionBlock>
       <Name value="deleteRecord" />
       <ActionLangBody IsValid="True">
-        <Script><![CDATA[//apiobjects.serverForMovies.postAsync()
-//apiobjects.serverForMovies.postAsync("delete", form.complex1.fromJson())
-/*
-var item = form.collection1.addItem()
+        <Script><![CDATA[//form.complex1.id = params.data.id
 
-//item.id = form.complex1.id
-item.name = form.complex1.name
-item.yearOfRelease = form.complex1.yearOfRelease
+form.deleteConfirm = apiobjects.page1.confirm("Do you really want to save all changes?")
+if form.deleteConfirm = true then
 
-item.type = form.complex1.type
-item.mainDirector = form.complex1.mainDirector
-item.description = form.complex1.description
+	form.deleteComplex.id = form.id
+	system.console("vypsani" +tostring(form.deleteComplex.toJson()))
+	var response = apiobjects.serverForMovies.postAsync("delete", form.deleteComplex.toJson())
 
 
-// //////////////////////////////////////////////////
-//var messageJson = form.complex1.toJson()
-var messageJson = item.toJson()
-
-*/
-
-//form.complex1.id = params.data.id
-form.deleteComplex.id = form.id
-system.console("vypsani" +tostring(form.deleteComplex.toJson()))
-var response = apiobjects.serverForMovies.postAsync("delete", form.deleteComplex.toJson())
-
-
-if response.isError() then
-	globals.errorMessage = response.getErrorMessage()
-else
-	system.console("uspesne mazani")
+	if response.isError() then
+		globals.errorMessage = response.getErrorMessage()
+	else
+		system.console("uspesne mazani")
+	endif
+	
+	navigation.main.movies1.go("")
+else 
+//navigace na hlavní formulář
+navigation.main.movies1.go("")
 endif
-//var item = "id=" + form.id 
-//var item
-
-//var item = "{id=" + form.id + "}"
-//var response = apiobjects.serverForMovies.postAsync("delete", form.id.toJson())]]></Script>
+]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />
@@ -327,6 +467,22 @@ endif
       <IsPrivate value="True" />
       <ActionLangBody IsValid="True">
         <Script><![CDATA[navigation.main.editRecord.go(params.data.id)]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="setUrl" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[var url = packages.main.apiobjects.urlRouter1.findFormUrl(navigation.main.Moviedetail.fullName)
+
+if form.id.hasValue() then
+	url.addString("id", form.id)
+endif
+
+url.updatePageUrl()
+]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />
