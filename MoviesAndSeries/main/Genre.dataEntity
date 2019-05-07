@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?data-format version="0.400"?>
 <DataEntity>
-  <Name value="Starring" />
-  <Caption value="Starring" />
+  <Name value="Genre" />
+  <Caption value="Genre" />
   <Children>
     <Attribute>
-      <Name value="actorName" />
-      <Caption value="Actor name" />
+      <Name value="genreItem" />
+      <Caption value="Genre item" />
       <DeclaredType>
         <AttributeType />
       </DeclaredType>

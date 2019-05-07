@@ -59,5 +59,17 @@
       <ReferencedIdentity value="busyIndicator.4a8ce8836eb04d7bbc155c7119f0193e" />
       <ReferencedVersion value="2.0.0" />
     </PackageReference>
+    <PackageReference Alias="referenceLookup" IsComponentLib="True" Origin="..\..\..\..\Downloads\moviesApp-master (1)\moviesApp-master\ReferenceLookup\ReferenceLookup.package">
+      <ReferencedIdentity value="referenceLookup.10b2d4db46e641b5bba23b33e3568c2e" />
+      <ReferencedVersion value="2.4.0" />
+    </PackageReference>
+    <PackageReference Alias="jQueryPackage" IsComponentLib="True" Origin="jQueryPackage\jQueryPackage.package">
+      <ReferencedIdentity value="jQueryPackage.969dfbfe76454b4187e210594a2a988b" />
+      <ReferencedVersion value="0.0.0" />
+    </PackageReference>
+    <PackageReference Alias="DeclListQuery" IsComponentLib="True" Origin="DeclListQuery\DeclListQuery.package">
+      <ReferencedIdentity value="DeclListQuery.f41d2c211a8f43618588763e63b56065" />
+      <ReferencedVersion value="1.0.2" />
+    </PackageReference>
   </PackageReferences>
 </ProjectRoot>

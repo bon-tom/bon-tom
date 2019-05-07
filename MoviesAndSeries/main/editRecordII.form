@@ -1,35 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?data-format version="0.400"?>
 <Form>
-  <Name value="form" />
-  <Caption value="Form" />
+  <Name value="editRecordII" />
+  <Caption value="Edit record II" />
   <Content>
-    <Panel>
-      <Name value="panel1" />
-      <Orientation value="Vertical" />
+    <Label>
+      <Name value="label1" />
+      <Data value="Label 1" />
       <Panel.Height value="#" />
       <Panel.Width value="*" />
-      <Children>
-        <Label>
-          <Name value="label1" />
-          <Data value="Jsi na formu" />
-          <Panel.Height value="#" />
-          <Panel.Width value="300px" />
-          <CssClass>
-            <CssClassConditional>
-              <ClassName value="{theme}-label" />
-              <IsThemedStyle value="True" />
-            </CssClassConditional>
-          </CssClass>
-        </Label>
-      </Children>
       <CssClass>
         <CssClassConditional>
-          <ClassName value="{theme}-panel" />
+          <ClassName value="{theme}-label" />
           <IsThemedStyle value="True" />
         </CssClassConditional>
       </CssClass>
-    </Panel>
+    </Label>
   </Content>
   <DataContext>
     <DataContext>
@@ -46,4 +32,20 @@
       </Children>
     </DataContext>
   </DataContext>
+  <OnActivate>
+    <ActionEvent ReferencedAction="~action1" />
+  </OnActivate>
+  <Actions>
+    <ActionBlock>
+      <Name value="action1" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[system.console("Jsem v EditRecordII")
+system.console(form.codeListData)
+system.console(tostring(form.codeListData.isTouched()) )]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+  </Actions>
 </Form>

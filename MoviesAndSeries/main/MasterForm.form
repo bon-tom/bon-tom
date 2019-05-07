@@ -27,6 +27,7 @@
         </Label>
         <Breadcrumbs identity="Breadcrumbs.4d3eeadca3c54f1caa1d677db7e07acb">
           <Name value="breadcrumbs1" />
+          <controller reference="+GlobalApiObjects.breadcrumbsCtrl1" />
           <Panel.Height value="#" />
           <Panel.Width value="*" />
           <OnItemClick>
@@ -53,7 +54,7 @@
         </Label>
         <Label>
           <Name value="label2" />
-          <Data value="Metatyp series/movies; herci a vyhledávání herců; rozlišení na movies/series včetně rozdílného hodnocení" />
+          <Data value="herci a vyhledávání herců; rozlišení na movies/series včetně rozdílného hodnocení" />
           <Panel.Height value="#" />
           <Panel.Width value="*" />
           <CssClass>

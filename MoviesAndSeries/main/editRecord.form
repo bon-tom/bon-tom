@@ -335,6 +335,13 @@
     <DataContext>
       <Children>
         <Attribute>
+          <Name value="dataJson" />
+          <Caption value="Data json" />
+          <DeclaredType>
+            <AttributeType />
+          </DeclaredType>
+        </Attribute>
+        <Attribute>
           <Name value="id" />
           <Caption value="Id" />
           <DataContextParameter.IsInput value="True" />
@@ -423,7 +430,7 @@
     </DataContext>
   </DataContext>
   <OnActivate>
-    <ActionEvent ReferencedAction="~loadSingleRecordII" />
+    <ActionEvent ReferencedAction="~action1" />
   </OnActivate>
   <Actions>
     <ActionBlock>
@@ -560,6 +567,19 @@ else
 	//form.apiobjects.fillFromJson(codeListData)
 	form.complex1.fromJson(codeListData)
 endif]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="action1" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[system.console(form.dataJson)
+system.console(tostring(form.dataJson.isTouched()) )
+
+
+//system.console("Seznam se jeví jako prázdny?" +tostring(form._MarkofEmptiness))]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />

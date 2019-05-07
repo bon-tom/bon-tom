@@ -21,5 +21,8 @@
     <PackageItem Src="Seasons.dataEntity" />
     <PackageItem Src="RatingSeries.dataEntity" />
     <PackageItem Src="Starring.dataEntity" />
+    <PackageItem Src="Genre.dataEntity" />
+    <PackageItem Src="editRecordII.form" />
+    <PackageItem Src="formularI.form" />
   </Items>
 </Package>

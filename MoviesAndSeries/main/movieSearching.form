@@ -10,6 +10,14 @@
       <Panel.Height value="#" />
       <Panel.Width value="*" />
       <Children>
+        <BusyIndicator identity="busyIndicator.4a8ce8836eb04d7bbc155c7119f0193e">
+          <Name value="busyIndicator1" />
+          <Panel.Height value="#" />
+          <Panel.Width value="*" />
+          <Bindings>
+            <Binding SourceProperty="IsVisible" Expression="form._MarkofEmptiness" />
+          </Bindings>
+        </BusyIndicator>
         <Button>
           <Name value="goBack" />
           <Caption value="Go back" />
@@ -54,6 +62,40 @@
             </CssClassConditional>
           </CssClass>
         </TextBox>
+        <ReferenceLookup identity="referenceLookup.10b2d4db46e641b5bba23b33e3568c2e">
+          <Name value="namewithPrompter" />
+          <Caption value="Name with Prompter" />
+          <DataApiObject reference="~movieName" />
+          <DisplayMember value="name" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <Tooltip value="Postupné zadávání názvu filmu" />
+          <Bindings>
+            <Binding SourceProperty="Data" Expression="filter.list" />
+          </Bindings>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-referencelookup" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </ReferenceLookup>
+        <EnumCombo>
+          <Name value="enumCombo1" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <Bindings>
+            <Binding SourceProperty="Data" Expression="filter.type" />
+            <Binding SourceProperty="IsRequiredMarkVisible" Expression="filter.type.isRequired()" />
+            <Binding SourceProperty="Caption" Expression="filter.type.caption()" />
+          </Bindings>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-enumcombo" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </EnumCombo>
         <TextBox>
           <Name value="textBox2" />
           <CaptionVAlign value="Middle" />
@@ -71,13 +113,30 @@
             </CssClassConditional>
           </CssClass>
         </TextBox>
+        <TextBox>
+          <Name value="starringString" />
+          <CaptionVAlign value="Middle" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <Bindings>
+            <Binding SourceProperty="Data" Expression="filter.starringString" />
+            <Binding SourceProperty="IsRequiredMarkVisible" Expression="filter.starringString.isRequired()" />
+            <Binding SourceProperty="Caption" Expression="filter.starringString.caption()" />
+          </Bindings>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-textbox" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </TextBox>
         <Button>
           <Name value="searchRecords" />
           <Caption value="Search records" />
           <Panel.Height value="#" />
           <Panel.Width value="150px" />
           <OnClick>
-            <ActionEvent ReferencedAction="~action1" />
+            <ActionEvent ReferencedAction="~searchwithName" />
           </OnClick>
           <CssClass>
             <CssClassConditional>
@@ -181,6 +240,33 @@
                 </CssClassConditional>
               </HeaderCssClass>
             </DataColumn>
+            <DataColumn>
+              <Name value="dataColumn3" />
+              <Caption value="Data column 3" />
+              <Content>
+                <Button>
+                  <Name value="ShowWholeRecord" />
+                  <Caption value="Show whole record" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="150px" />
+                  <OnClick>
+                    <ActionEvent ReferencedAction="~handler_ShowWholeRecord_OnClick" />
+                  </OnClick>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-button" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Button>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
           </Columns>
           <CssClass>
             <CssClassConditional>
@@ -265,9 +351,35 @@
   <DataContext>
     <DataContext>
       <Children>
+        <Computed>
+          <Name value="_MarkofEmptiness" />
+          <Caption value="_MarkofEmptiness" />
+          <Expression IsValid="True">
+            <ExpressionText><![CDATA[not(form.dataJson.hasValue())]]></ExpressionText>
+            <ResultType>
+              <BaseType value="Bool" />
+            </ResultType>
+          </Expression>
+        </Computed>
+        <Attribute>
+          <Name value="id" />
+          <Caption value="Id" />
+          <DeclaredType>
+            <AttributeType />
+          </DeclaredType>
+        </Attribute>
         <Attribute>
           <Name value="name" />
           <Caption value="Name" />
+          <DeclaredType>
+            <AttributeType />
+          </DeclaredType>
+        </Attribute>
+        <Attribute>
+          <Name value="dataJson" />
+          <Caption value="Data json" />
+          <DataContextParameter.IsInput value="True" />
+          <DataContextParameter.IsInputRequired value="True" />
           <DeclaredType>
             <AttributeType />
           </DeclaredType>
@@ -279,6 +391,44 @@
             <AttributeType />
           </DeclaredType>
         </Attribute>
+        <Complex>
+          <Name value="filter" />
+          <Caption value="Filter" />
+          <Children>
+            <Reference>
+              <Name value="list" />
+              <Caption value="List" />
+              <Children>
+                <Attribute>
+                  <Name value="name" />
+                  <Caption value="Name" />
+                  <DeclaredType>
+                    <AttributeType />
+                  </DeclaredType>
+                </Attribute>
+                <Attribute>
+                  <Name value="id" />
+                  <Caption value="Id" />
+                  <DeclaredType>
+                    <AttributeType />
+                  </DeclaredType>
+                </Attribute>
+              </Children>
+            </Reference>
+            <Attribute>
+              <Name value="type" />
+              <Caption value="Type" />
+              <MetaType reference="+MetaTypes.metaType" />
+            </Attribute>
+            <Attribute>
+              <Name value="starringString" />
+              <Caption value="Starring string" />
+              <DeclaredType>
+                <AttributeType />
+              </DeclaredType>
+            </Attribute>
+          </Children>
+        </Complex>
         <Collection>
           <Name value="collection1" />
           <Caption value="Collection 1" />
@@ -286,6 +436,15 @@
             <Include>
               <Include reference="+DataEntities.Movies" />
             </Include>
+            <Collection>
+              <Name value="starring" />
+              <Caption value="Starring" />
+              <Children>
+                <Include>
+                  <Include reference="+DataEntities.Starring" />
+                </Include>
+              </Children>
+            </Collection>
           </Children>
         </Collection>
         <Collection>
@@ -300,6 +459,9 @@
       </Children>
     </DataContext>
   </DataContext>
+  <OnActivate>
+    <ActionEvent ReferencedAction="~action1" />
+  </OnActivate>
   <Actions>
     <ActionBlock>
       <Name value="goBackWithoutSearching" />
@@ -340,7 +502,59 @@ endif
 
 */
 
-var movieListJson = apiobjects.serverForMovies.getAsync("list")
+
+system.console(form.dataJson)
+system.console(tostring(form.dataJson.isTouched()) )
+system.console("Seznam se jeví jako prázdny?" +tostring(form._MarkofEmptiness))
+
+form.apiobjects.movieName.fillFromJson(form.dataJson)
+
+//var source = tostring(form.dataJson)
+//form.name = tostring(source)
+
+if form.name.hasValue() then
+	//form.collection1.clear()
+	form.collection1.fromJson(form.dataJson)
+
+	foreach item in form.collection1 do
+		if indexOf(item.name, form.name) <> 0 then
+			var collectionItem = form.collectionMovies.addItem()
+			
+			collectionItem.name = item.name
+			collectionItem.yearOfRelease = item.yearOfRelease
+			collectionItem.type = item.type
+			collectionItem.mainDirector = item.mainDirector
+			
+			system.console("Cosik jsem aj našel podle částečného jména")
+		endif
+		system.console("blablabla")
+	endfor
+	
+	var x = form.collectionMovies.toJson()
+endif
+
+
+if form.type.hasValue() then
+	//form.collection1.clear()
+	form.collection1.fromJson(form.dataJson)
+
+	foreach item in form.collection1 do
+		if indexOf(item.name, form.type) <> 0 then
+			var collectionItem = form.collectionMovies.addItem()
+			
+			collectionItem.name = item.name
+			collectionItem.yearOfRelease = item.yearOfRelease
+			collectionItem.type = item.type
+			collectionItem.mainDirector = item.mainDirector
+			
+			system.console("Cosik jsem aj našel podle type")
+		endif
+		system.console("blablabla")
+	endfor
+	
+	var x = form.collectionMovies.toJson()
+endif
+//var movieListJson = apiobjects.serverForMovies.getAsync("list")
 
 /*
 system.console(tostring(form.name))
@@ -410,6 +624,7 @@ endif
 
 
 //if form.type.hasValue() OR form.name.hasValue() then
+/*
 if form.name.hasValue() then
 	//form.collection1.clear()
 	system.console("Jméno, nebo typ")
@@ -431,7 +646,8 @@ if form.name.hasValue() then
 	endfor
 	
 	var x = form.collectionMovies.toJson()
-endif]]></Script>
+endif
+*/]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />
@@ -440,11 +656,141 @@ endif]]></Script>
     <ActionBlock>
       <Name value="action2" />
       <ActionLangBody IsValid="True">
-        <Script><![CDATA[form.clear()]]></Script>
+        <Script><![CDATA[form.clear()
+system.console(tostring(not form.dataJson.isTouched()))]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="searchwithName" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[system.console(form.dataJson)
+
+form.apiobjects.movieName.fillFromJson(form.dataJson)
+
+//var source = tostring(form.dataJson)
+//form.name = tostring(source)
+
+if form.name.hasValue() then
+	//form.collection1.clear()
+	form.collection1.fromJson(form.dataJson)
+
+	foreach item in form.collection1 do
+		if indexOf(item.name, form.name) <> 0 then
+			var collectionItem = form.collectionMovies.addItem()
+			
+			collectionItem.id = item.id
+			collectionItem.name = item.name
+			collectionItem.yearOfRelease = item.yearOfRelease
+			collectionItem.type = item.type
+			collectionItem.mainDirector = item.mainDirector
+			
+			system.console("Cosik jsem aj našel podle částečného jména")
+		endif
+		system.console("blablabla")
+	endfor
+	
+	var x = form.collectionMovies.toJson()
+endif
+
+//if form.filter.type.hasValue() then
+
+if form.filter.type.hasValue() then
+	//form.collection1.clear()
+	form.collection1.fromJson(form.dataJson)
+
+	foreach item in form.collection1 do
+	
+		//if indexOf(item.type, form.filter.type) <> 0 then
+		//if indexOf(item.type, form.filter.type) then
+		if (form.filter.type = item.type ) then
+		//if indexOf(item.type, form.type) <> 0 then
+			var collectionItem = form.collectionMovies.addItem()
+			
+			collectionItem.name = item.name
+			collectionItem.yearOfRelease = item.yearOfRelease
+			collectionItem.type = item.type
+			collectionItem.mainDirector = item.mainDirector
+			
+			system.console("Cosik jsem aj našel podle type")
+		endif
+		system.console("blablabla")
+	endfor
+	
+	var x = form.collectionMovies.toJson()
+endif
+
+if form.filter.starringString.hasValue() then
+	//form.collection1.clear()
+	form.collection1.fromJson(form.dataJson)
+	var domalejchzfiltru=tolower(form.filter.starringString)
+	
+	system.console(domalejchzfiltru)
+	//system.console(form.collection1.starring.actorName)
+	
+	foreach item in form.collection1 do
+	    system.console("Hledam podle jmena herce")
+		//system.console(tostring(item.starring))
+		
+		//if indexOf(form.filter.starringString, collection1.starring.actorName) then
+		//if indexOf(form.filter.starringString, collection1.starring.actorName) thenin
+		if item.starring.exists(indexOf(tolower(current.actorName), domalejchzfiltru) <> 0) then
+			var collectionItem = form.collectionMovies.addItem()
+			
+			collectionItem.name = item.name
+			collectionItem.yearOfRelease = item.yearOfRelease
+			collectionItem.type = item.type
+			collectionItem.mainDirector = item.mainDirector
+			
+			system.console("Cosik jsem aj našel podle jmena herce")
+		endif
+		system.console("blablabla")
+	endfor
+	
+	var x = form.collectionMovies.toJson()
+endif
+
+]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="handler_ShowWholeRecord_OnClick" />
+      <IsPrivate value="True" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[navigation.main.movieDetail.go(params.data.id)]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />
       </DataContext>
     </ActionBlock>
   </Actions>
+  <ApiObjects>
+    <Codelist identity="Codelist.2fd2d7af4a6d445bad8a58610632f8e0">
+      <Name value="movieName" />
+      <autoLoad value="False" />
+      <filterByDate value="False" />
+      <name value="list" />
+      <server reference="+GlobalApiObjects.serverForMovies" />
+      <columns>
+        <CodelistColumn identity="Codelist.2fd2d7af4a6d445bad8a58610632f8e0">
+          <columnName value="id" />
+          <columnRole value="Key" />
+        </CodelistColumn>
+        <CodelistColumn identity="Codelist.2fd2d7af4a6d445bad8a58610632f8e0">
+          <columnName value="name" />
+          <columnRole value="Description" />
+        </CodelistColumn>
+      </columns>
+    </Codelist>
+    <DeclListQuery identity="DeclListQuery.f41d2c211a8f43618588763e63b56065">
+      <Name value="declListQuery1" />
+      <listName value="list" />
+      <server reference="+GlobalApiObjects.serverForMovies" />
+    </DeclListQuery>
+  </ApiObjects>
 </Form>

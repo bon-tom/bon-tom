@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?data-format version="0.400"?>
 <Form>
-  <Name value="form" />
-  <Caption value="Form" />
+  <Name value="formularI" />
+  <Caption value="Formular I" />
   <Content>
     <Panel>
       <Name value="panel1" />
@@ -46,4 +46,20 @@
       </Children>
     </DataContext>
   </DataContext>
+  <OnActivate>
+    <ActionEvent ReferencedAction="~initformularI" />
+  </OnActivate>
+  <Actions>
+    <ActionBlock>
+      <Name value="initformularI" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[system.console(form.codeListData)
+system.console(tostring(form.codeListData.isTouched()) )
+]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+  </Actions>
 </Form>
