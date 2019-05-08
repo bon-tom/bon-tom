@@ -118,6 +118,122 @@
                     </CssClassConditional>
                   </CssClass>
                 </LabeledText>
+                <GroupBox>
+                  <Name value="groupBox1" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="*" />
+                  <Content>
+                    <Repeater>
+                      <Name value="repeater1" />
+                      <Content>
+                        <Panel>
+                          <Name value="panel5" />
+                          <Orientation value="Vertical" />
+                          <Children>
+                            <LabeledText identity="labeledText.a92a691d6915448ebf9f0b804ce6a733">
+                              <Name value="labeledText8" />
+                              <Panel.Height value="#" />
+                              <Panel.Width value="300px" />
+                              <Bindings>
+                                <Binding SourceProperty="Data" Expression="genreItem" />
+                                <Binding SourceProperty="IsRequiredMarkVisible" Expression="genreItem.isRequired()" />
+                                <Binding SourceProperty="Caption" Expression="genreItem.caption()" />
+                              </Bindings>
+                              <CssClass>
+                                <CssClassConditional>
+                                  <ClassName value="{theme}-labeledtext" />
+                                  <IsThemedStyle value="True" />
+                                </CssClassConditional>
+                              </CssClass>
+                            </LabeledText>
+                          </Children>
+                          <CssClass>
+                            <CssClassConditional>
+                              <ClassName value="{theme}-panel" />
+                              <IsThemedStyle value="True" />
+                            </CssClassConditional>
+                          </CssClass>
+                        </Panel>
+                      </Content>
+                      <Bindings>
+                        <Binding SourceProperty="DataItems" Expression="complex1.genre" />
+                      </Bindings>
+                      <CssClass>
+                        <CssClassConditional>
+                          <ClassName value="{theme}-repeater" />
+                          <IsThemedStyle value="True" />
+                        </CssClassConditional>
+                      </CssClass>
+                    </Repeater>
+                  </Content>
+                  <Bindings>
+                    <Binding SourceProperty="Caption" Expression="complex1.genre.caption()" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-groupbox" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </GroupBox>
+                <GroupBox>
+                  <Name value="groupBox2" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="*" />
+                  <Content>
+                    <Repeater>
+                      <Name value="repeater2" />
+                      <Content>
+                        <Panel>
+                          <Name value="panel6" />
+                          <Orientation value="Vertical" />
+                          <Children>
+                            <LabeledText identity="labeledText.a92a691d6915448ebf9f0b804ce6a733">
+                              <Name value="labeledText9" />
+                              <Panel.Height value="#" />
+                              <Panel.Width value="*" />
+                              <Bindings>
+                                <Binding SourceProperty="Data" Expression="actorName" />
+                                <Binding SourceProperty="IsRequiredMarkVisible" Expression="actorName.isRequired()" />
+                                <Binding SourceProperty="Caption" Expression="actorName.caption()" />
+                              </Bindings>
+                              <CssClass>
+                                <CssClassConditional>
+                                  <ClassName value="{theme}-labeledtext" />
+                                  <IsThemedStyle value="True" />
+                                </CssClassConditional>
+                              </CssClass>
+                            </LabeledText>
+                          </Children>
+                          <CssClass>
+                            <CssClassConditional>
+                              <ClassName value="{theme}-panel" />
+                              <IsThemedStyle value="True" />
+                            </CssClassConditional>
+                          </CssClass>
+                        </Panel>
+                      </Content>
+                      <Bindings>
+                        <Binding SourceProperty="DataItems" Expression="complex1.starring" />
+                      </Bindings>
+                      <CssClass>
+                        <CssClassConditional>
+                          <ClassName value="{theme}-repeater" />
+                          <IsThemedStyle value="True" />
+                        </CssClassConditional>
+                      </CssClass>
+                    </Repeater>
+                  </Content>
+                  <Bindings>
+                    <Binding SourceProperty="Caption" Expression="complex1.starring.caption()" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-groupbox" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </GroupBox>
                 <Panel>
                   <Name value="panel4" />
                   <Orientation value="Vertical" />
@@ -335,8 +451,10 @@
     <DataContext>
       <Children>
         <Attribute>
-          <Name value="dataJson" />
-          <Caption value="Data json" />
+          <Name value="recordForEdit" />
+          <Caption value="Record for edit" />
+          <DataContextParameter.IsInput value="True" />
+          <DataContextParameter.IsInputRequired value="True" />
           <DeclaredType>
             <AttributeType />
           </DeclaredType>
@@ -344,8 +462,6 @@
         <Attribute>
           <Name value="id" />
           <Caption value="Id" />
-          <DataContextParameter.IsInput value="True" />
-          <DataContextParameter.IsInputRequired value="True" />
           <DeclaredType>
             <AttributeType />
           </DeclaredType>
@@ -371,6 +487,24 @@
             <Include>
               <Include reference="+DataEntities.Movies" />
             </Include>
+            <Collection>
+              <Name value="genre" />
+              <Caption value="Genre" />
+              <Children>
+                <Include>
+                  <Include reference="+DataEntities.Genre" />
+                </Include>
+              </Children>
+            </Collection>
+            <Collection>
+              <Name value="starring" />
+              <Caption value="Starring" />
+              <Children>
+                <Include>
+                  <Include reference="+DataEntities.Starring" />
+                </Include>
+              </Children>
+            </Collection>
             <Complex>
               <Name value="rating" />
               <Caption value="Rating" />
@@ -430,7 +564,7 @@
     </DataContext>
   </DataContext>
   <OnActivate>
-    <ActionEvent ReferencedAction="~action1" />
+    <ActionEvent ReferencedAction="~initeditRecord" />
   </OnActivate>
   <Actions>
     <ActionBlock>
@@ -573,12 +707,28 @@ endif]]></Script>
       </DataContext>
     </ActionBlock>
     <ActionBlock>
-      <Name value="action1" />
+      <Name value="initeditRecord" />
       <ActionLangBody IsValid="True">
-        <Script><![CDATA[system.console(form.dataJson)
-system.console(tostring(form.dataJson.isTouched()) )
+        <Script><![CDATA[system.console("Tohle jsou data pro edit ve formuláři edit" +form.recordForEdit)
+system.console(tostring(form.recordForEdit.isTouched()) )
 
+//var response = apiobjects.serverForMovies.getAsync("record?id=" +tostring(this.form.id))
 
+//if response.isError() then
+//	system.consoleError(response.getErrorMessage())	
+//else
+//	result = response.extractJson("card")
+//	result = response.extractJson("record/")
+	
+	//system.console(response.getJsonString())
+	
+	//var codeListData = recordForEdit.getJsonString()
+	
+	//system.console(codeListData)
+	
+	//form.apiobjects.fillFromJson(recordForEdit)
+	form.complex1.fromJson(form.recordForEdit)
+//endif
 //system.console("Seznam se jeví jako prázdny?" +tostring(form._MarkofEmptiness))]]></Script>
       </ActionLangBody>
       <DataContext>

@@ -54,7 +54,7 @@
         </Label>
         <Label>
           <Name value="label2" />
-          <Data value="herci a vyhledávání herců; rozlišení na movies/series včetně rozdílného hodnocení" />
+          <Data value="rozlišení na movies/series včetně rozdílného hodnocení" />
           <Panel.Height value="#" />
           <Panel.Width value="*" />
           <CssClass>

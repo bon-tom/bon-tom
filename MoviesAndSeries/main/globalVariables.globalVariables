@@ -17,6 +17,15 @@
         <Include>
           <Include reference="+DataEntities.Movies" />
         </Include>
+        <Collection>
+          <Name value="genre" />
+          <Caption value="Genre" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.Genre" />
+            </Include>
+          </Children>
+        </Collection>
       </Children>
     </Collection>
   </Children>

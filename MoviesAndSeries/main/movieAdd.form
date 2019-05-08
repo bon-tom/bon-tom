@@ -133,6 +133,96 @@
               </CssClass>
             </TextBox>
             <GroupBox>
+              <Name value="groupBox2" />
+              <Panel.Height value="#" />
+              <Panel.Width value="*" />
+              <Content>
+                <Repeater>
+                  <Name value="repeater3" />
+                  <Content>
+                    <Panel>
+                      <Name value="panel3" />
+                      <Orientation value="Vertical" />
+                      <Children>
+                        <TextBox>
+                          <Name value="textBox8" />
+                          <Caption value="Text box 8" />
+                          <CaptionVAlign value="Middle" />
+                          <Panel.Height value="#" />
+                          <Panel.Width value="300px" />
+                          <Bindings>
+                            <Binding SourceProperty="Data" Expression="genreItem" />
+                            <Binding SourceProperty="IsRequiredMarkVisible" Expression="genreItem.isRequired()" />
+                            <Binding SourceProperty="Caption" Expression="genreItem.caption()" />
+                          </Bindings>
+                          <CssClass>
+                            <CssClassConditional>
+                              <ClassName value="{theme}-textbox" />
+                              <IsThemedStyle value="True" />
+                            </CssClassConditional>
+                          </CssClass>
+                        </TextBox>
+                        <Button>
+                          <Name value="AddAnothergenreItem" />
+                          <Caption value="Add another genre item" />
+                          <Panel.Height value="#" />
+                          <Panel.Width value="150px" />
+                          <OnClick>
+                            <ActionEvent ReferencedAction="~handler_AddAnothergenreItem_OnClick" />
+                          </OnClick>
+                          <CssClass>
+                            <CssClassConditional>
+                              <ClassName value="{theme}-button" />
+                              <IsThemedStyle value="True" />
+                            </CssClassConditional>
+                          </CssClass>
+                        </Button>
+                        <Button>
+                          <Name value="DeletelGenreItem" />
+                          <Caption value="Deletel genre item" />
+                          <Panel.Height value="#" />
+                          <Panel.Width value="150px" />
+                          <OnClick>
+                            <ActionEvent ReferencedAction="~handler_button3_OnClick" />
+                          </OnClick>
+                          <CssClass>
+                            <CssClassConditional>
+                              <ClassName value="{theme}-button" />
+                              <IsThemedStyle value="True" />
+                            </CssClassConditional>
+                          </CssClass>
+                        </Button>
+                      </Children>
+                      <CssClass>
+                        <CssClassConditional>
+                          <ClassName value="{theme}-panel" />
+                          <IsThemedStyle value="True" />
+                        </CssClassConditional>
+                      </CssClass>
+                    </Panel>
+                  </Content>
+                  <Bindings>
+                    <Binding SourceProperty="DataItems" Expression="form.complex1.genre" />
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="{theme}-repeater" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Repeater>
+              </Content>
+              <Bindings>
+                <Binding SourceProperty="Caption" Expression="complex1.genre.caption()" />
+              </Bindings>
+              <CssClass>
+                <CssClassConditional>
+                  <ClassName value="{theme}-groupbox" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </CssClass>
+            </GroupBox>
+            <GroupBox>
               <Name value="groupBox1" />
               <Panel.Height value="#" />
               <Panel.Width value="*" />
@@ -213,89 +303,6 @@
               <Bindings>
                 <Binding SourceProperty="Caption" Expression="complex1.starring.caption()" />
               </Bindings>
-              <CssClass>
-                <CssClassConditional>
-                  <ClassName value="{theme}-groupbox" />
-                  <IsThemedStyle value="True" />
-                </CssClassConditional>
-              </CssClass>
-            </GroupBox>
-            <GroupBox>
-              <Name value="Genre" />
-              <Caption value="Genre" />
-              <Panel.Height value="#" />
-              <Panel.Width value="*" />
-              <Content>
-                <Repeater>
-                  <Name value="repeater2" />
-                  <Panel.Height value="#" />
-                  <Panel.Width value="*" />
-                  <Content>
-                    <Panel>
-                      <Name value="panel10" />
-                      <Orientation value="Vertical" />
-                      <Children>
-                        <TextBox>
-                          <Name value="textBox13" />
-                          <CaptionPosition value="Top" />
-                          <Panel.Height value="#" />
-                          <Panel.Width value="150px" />
-                          <Bindings>
-                            <Binding SourceProperty="Data" Expression="genreItem" />
-                            <Binding SourceProperty="IsRequiredMarkVisible" Expression="genreItem.isRequired()" />
-                            <Binding SourceProperty="Caption" Expression="genreItem.caption()" />
-                          </Bindings>
-                        </TextBox>
-                        <Button>
-                          <Name value="AddAnotherGenre" />
-                          <Caption value="Add another genre" />
-                          <Panel.Height value="#" />
-                          <Panel.Width value="150px" />
-                          <OnClick>
-                            <ActionEvent ReferencedAction="~handler_AddAnotherGenre_OnClick" />
-                          </OnClick>
-                          <CssClass>
-                            <CssClassConditional>
-                              <ClassName value="{theme}-button" />
-                              <IsThemedStyle value="True" />
-                            </CssClassConditional>
-                          </CssClass>
-                        </Button>
-                        <Button>
-                          <Name value="DeleteGenreItem" />
-                          <Caption value="Delete genre item" />
-                          <Panel.Height value="#" />
-                          <Panel.Width value="150px" />
-                          <OnClick>
-                            <ActionEvent ReferencedAction="~handler_button2_OnClick" />
-                          </OnClick>
-                          <CssClass>
-                            <CssClassConditional>
-                              <ClassName value="{theme}-button" />
-                              <IsThemedStyle value="True" />
-                            </CssClassConditional>
-                          </CssClass>
-                        </Button>
-                      </Children>
-                      <CssClass>
-                        <CssClassConditional>
-                          <ClassName value="{theme}-panel" />
-                          <IsThemedStyle value="True" />
-                        </CssClassConditional>
-                      </CssClass>
-                    </Panel>
-                  </Content>
-                  <Bindings>
-                    <Binding SourceProperty="DataItems" Expression="complex1.genre" />
-                  </Bindings>
-                  <CssClass>
-                    <CssClassConditional>
-                      <ClassName value="{theme}-repeater" />
-                      <IsThemedStyle value="True" />
-                    </CssClassConditional>
-                  </CssClass>
-                </Repeater>
-              </Content>
               <CssClass>
                 <CssClassConditional>
                   <ClassName value="{theme}-groupbox" />
@@ -395,7 +402,7 @@
           <Panel.Height value="#" />
           <Panel.Width value="150px" />
           <OnClick>
-            <ActionEvent ReferencedAction="~SaveToServer" />
+            <ActionEvent ReferencedAction="~SaveToServerII" />
           </OnClick>
           <CssClass>
             <CssClassConditional>
@@ -597,8 +604,11 @@
         <Script><![CDATA[form.saveConfirm = apiobjects.page1.confirm("Do you really want to save all changes?")
 
 if form.saveConfirm = true then
+
+	/*
 	var item = form.collection1.addItem()
 
+	system.console("Tohle je počáteční položka"+item.toJson())
 	//item.id = form.complex1.id
 	item.name = form.complex1.name
 	item.yearOfRelease = form.complex1.yearOfRelease
@@ -611,15 +621,42 @@ if form.saveConfirm = true then
 	item.rating.dateOfWatching = form.complex1.rating.dateOfWatching
 	item.rating.seenItWhole = form.complex1.rating.seenItWhole
 	
-	
+	//var item2=form.collection1.genre.addItem()
 	item.starring = form.complex1.starring
+	//system.console(form.complex1.starring)
+	
+	
+	//system.console(tostring(item.starring))
+	//item.genre = form.complex1.genre.addItem()
+	//system.console(form.complex1.starring)
+	/*
+	foreach item2 in item.starring do
+		system.console(item.starring.item2)
+	endfor
+	
+	*/
 	//item.starring.ActorName = form.complex1.starring.ActorName
 	//item.starring = form.complex1.starring
-
-	item.genre = form.complex1.genre
+	
+	/*
+	foreach item2 in form.complex1.starring do
+		var actorName2 = form.complex1.starring.addItem()
+		//actorName2.actorName = form.complex1.starring.actorName
+	
+		item.starring.
+	
+	endfor
+	*/
+	/*
+	system.console("Tohle ukladam do JSONu"+item.toJson())
+	
+	
 	
 	var messageJson = item.toJson()
-	var response = apiobjects.serverForMovies.postAsync("create", messageJson)
+	*/
+	
+	system.console(tostring(form.complex1.toJson()))
+	var response = apiobjects.serverForMovies.postAsync("create", form.complex1.toJson())
 
 	if (response.isError()) then
 		system.consoleError(response.getErrorMessage())
@@ -733,6 +770,56 @@ form.complex1.starring.removeItem(1)]]></Script>
       <ActionLangBody IsValid="True">
         <Script><![CDATA[//form.complex1.starring.addItem()
 form.complex1.genre.addItem()]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="handler_button3_OnClick" />
+      <IsPrivate value="True" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[form.complex1.genre.removeItem(1)]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="handler_AddAnothergenreItem_OnClick" />
+      <IsPrivate value="True" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[form.complex1.genre.addItem()]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="SaveToServerII" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[form.saveConfirm = apiobjects.page1.confirm("Do you really want to save all changes?")
+
+if form.saveConfirm = true then
+
+	system.console(tostring(form.complex1.toJson()))
+	var response = apiobjects.serverForMovies.postAsync("create", form.complex1.toJson())
+
+	if (response.isError()) then
+		system.consoleError(response.getErrorMessage())
+	else 
+		form.postResult = response.getJsonString()
+		form.ContentType = response.getHeader("Content-Type")
+	endif
+	
+	navigation.main.movies1.go("")
+// SuccessFull POSTING?
+
+else 
+//navigace na hlavní formulář
+navigation.main.movies1.go("")
+
+endif]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />

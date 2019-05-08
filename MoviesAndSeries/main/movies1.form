@@ -76,18 +76,6 @@
                 </CssClassConditional>
               </CssClass>
             </Button>
-            <Button>
-              <Name value="button3" />
-              <Caption value="Button 3" />
-              <Panel.Height value="#" />
-              <Panel.Width value="150px" />
-              <CssClass>
-                <CssClassConditional>
-                  <ClassName value="{theme}-button" />
-                  <IsThemedStyle value="True" />
-                </CssClassConditional>
-              </CssClass>
-            </Button>
           </Children>
           <CssClass>
             <CssClassConditional>
@@ -125,7 +113,7 @@
                 </Button>
                 <Button>
                   <Name value="GotoSearchForm" />
-                  <Caption value="Go to Search form" />
+                  <Caption value="Go to Search and Sort form" />
                   <Panel.Height value="#" />
                   <Panel.Width value="150px" />
                   <OnClick>
@@ -329,6 +317,20 @@
     <DataContext>
       <Children>
         <Attribute>
+          <Name value="dataforMovieDetail" />
+          <Caption value="Datafor movie detail" />
+          <DeclaredType>
+            <AttributeType />
+          </DeclaredType>
+        </Attribute>
+        <Attribute>
+          <Name value="codeListData" />
+          <Caption value="Code list data" />
+          <DeclaredType>
+            <AttributeType />
+          </DeclaredType>
+        </Attribute>
+        <Attribute>
           <Name value="dataJson" />
           <Caption value="Data json" />
           <DeclaredType>
@@ -395,6 +397,15 @@
                 </Include>
               </Children>
             </Collection>
+            <Complex>
+              <Name value="rating" />
+              <Caption value="Rating" />
+              <Children>
+                <Include>
+                  <Include reference="+DataEntities.RatingMovies" />
+                </Include>
+              </Children>
+            </Complex>
           </Children>
         </Complex>
         <Collection>
@@ -509,6 +520,8 @@ else
 	//form.Movies.fromJson(response.getJsonString())
 	
 	form.dataJson = response.getJsonString()
+	form.dataforMovieDetail = response.getJsonString()
+	
 	
 	form.selectionofMovies.fromJson(form.dataJson)
 	
@@ -574,16 +587,6 @@ endif
 */
 
 //var response = apiobjects.serverForMovies.getAsync()]]></Script>
-      </ActionLangBody>
-      <DataContext>
-        <ActionDataContext />
-      </DataContext>
-    </ActionBlock>
-    <ActionBlock>
-      <Name value="handler_ShowWholeRecord_OnClick" />
-      <IsPrivate value="True" />
-      <ActionLangBody IsValid="True">
-        <Script><![CDATA[navigation.main.movieDetail.go(params.data.id)]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />
@@ -677,6 +680,51 @@ system.console(resNameOfOrder)
 
 form.selectionofMovies.fromJson(resNameOfOrder)
 //form.selectionofMovies = resOfOrder]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="goToMovieDetail" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[//navigation.main.movieDetail.go()
+//navigation.main.movieDetail.goandBack(form.codeListData)
+//navigation.main.movieDetail.go(form.dataFormovieDetail)
+
+]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="handler_ShowWholeRecord_OnClick" />
+      <IsPrivate value="True" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[navigation.main.movieDetail.go(params.data.id)]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="orderByRating" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[if form.ascDesc = true then
+	form.ascDesc = false
+else
+	form.ascDesc = true
+endif
+
+//var resOfOrder = form.selectionofMovies.orderBy(current.yearOfRelease, true).toJson()
+var resOfOrder = form.selectionofMovies.orderBy(current.mainDirector, form.ascDesc).toJson()
+
+//var resOfOrder = form.selectionofMovies.orderBy(current.rating.score, form.ascDesc).toJson()
+
+system.console(resOfOrder)
+
+form.selectionofMovies.fromJson(resOfOrder)]]></Script>
       </ActionLangBody>
       <DataContext>
         <ActionDataContext />
