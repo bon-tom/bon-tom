@@ -1,0 +1,44 @@
+{
+    "editedRecord": {
+        "name": "commodo amet imperdiet justo risus",
+        "modelsCount": 1109019703,
+        "name2": "commodo amet imperdiet justo risus",
+        "modelsCount2": 1109019703,
+        "name3": "commodo amet imperdiet justo risus",
+        "modelsCount3": 1029093054
+    },
+    "addedRecords": [
+        {
+            "name": "commodo amet imperdiet justo risus",
+            "modelsCount": 759766946,
+            "name2": 1109019703,
+            "modelsCount2": 1109019703,
+            "name3": "elit quis consectetur",
+            "modelsCount3": "condimentum lacus"
+        },
+        {
+            "name": "elit quis consectetur",
+            "modelsCount": 196867201,
+            "name2": 759766946,
+            "modelsCount2": 759766946,
+            "name3": "massa erat augue",
+            "modelsCount3": "aliquet"
+        }
+    ],
+    "customers": [
+        {
+            "CustomerID": "amet imperdiet justo risus pulvinar tempus porta"
+        },
+        {
+            "CustomerID": "quis consectetur felis condimentum lacus accumsan"
+        }
+    ],
+    "Products": [
+        {
+            "Products": "commodo amet imperdiet justo risus"
+        },
+        {
+            "Products": "tempus porta elit quis consectetur"
+        }
+    ]
+}

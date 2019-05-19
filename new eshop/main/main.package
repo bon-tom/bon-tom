@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.301"?>
+<Package>
+  <Identity value="main.4a9bdd83fa5148a7a05d4ebab8617584" />
+  <Items>
+    <PackageItem Src="form.form">
+      <SubItems>
+        <TestDataDefinition Src="form.form.testDataDefinition1.json" />
+      </SubItems>
+    </PackageItem>
+    <PackageItem Src="Unit.dataEntity" />
+    <PackageItem Src="globalActions.globalActions" />
+    <PackageItem Src="report.form">
+      <SubItems>
+        <TestDataDefinition Src="report.form.testDataDefinition1.json" />
+      </SubItems>
+    </PackageItem>
+  </Items>
+</Package>

@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.301"?>
+<Form>
+  <Name value="report" />
+  <Caption value="Report" />
+  <Content>
+    <Panel>
+      <Name value="panel1" />
+      <Orientation value="Vertical" />
+      <Panel.Height value="#" />
+      <Panel.Width value="*" />
+      <Children>
+        <Panel>
+          <Name value="panel2" />
+          <Orientation value="Horizontal" />
+          <Panel.Height value="#" />
+          <Panel.Width value="*" />
+          <Children>
+            <GroupBox>
+              <Name value="groupBox1" />
+              <Caption value="Group box 1" />
+              <Panel.Height value="#" />
+              <Panel.Width value="*" />
+              <Content>
+                <Repeater>
+                  <Name value="addedRecords" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="*" />
+                  <Content>
+                    <Panel>
+                      <Name value="panel3" />
+                      <Orientation value="Horizontal" />
+                      <Children>
+                        <TextBox>
+                          <Name value="textBox3" />
+                          <CaptionVAlign value="Middle" />
+                          <IsEnabled value="False" />
+                          <Panel.Height value="#" />
+                          <Panel.Width value="50%" />
+                          <Bindings>
+                            <Binding SourceProperty="Data">
+                              <Expression>
+                                <Text><![CDATA[name]]></Text>
+                              </Expression>
+                            </Binding>
+                            <Binding SourceProperty="Caption">
+                              <Expression>
+                                <Text><![CDATA[name.caption()]]></Text>
+                              </Expression>
+                            </Binding>
+                          </Bindings>
+                          <CssClass>
+                            <CssClassConditional>
+                              <ClassName value="m8-textbox" />
+                              <IsThemedStyle value="True" />
+                            </CssClassConditional>
+                          </CssClass>
+                        </TextBox>
+                        <TextBox>
+                          <Name value="modelsCount" />
+                          <CaptionPosition value="Top" />
+                          <Panel.Height value="#" />
+                          <Panel.Width value="150px" />
+                          <Bindings>
+                            <Binding SourceProperty="Data">
+                              <Expression>
+                                <Text><![CDATA[modelsCount]]></Text>
+                              </Expression>
+                            </Binding>
+                            <Binding SourceProperty="IsRequiredMarkVisible">
+                              <Expression>
+                                <Text><![CDATA[modelsCount.isRequired()]]></Text>
+                              </Expression>
+                            </Binding>
+                            <Binding SourceProperty="Caption">
+                              <Expression>
+                                <Text><![CDATA[modelsCount.caption()]]></Text>
+                              </Expression>
+                            </Binding>
+                          </Bindings>
+                          <CssClass>
+                            <CssClassConditional>
+                              <ClassName value="m8-textbox" />
+                              <IsThemedStyle value="True" />
+                            </CssClassConditional>
+                          </CssClass>
+                        </TextBox>
+                        <TextBox>
+                          <Name value="remove" />
+                          <CaptionPosition value="Top" />
+                          <Panel.Height value="#" />
+                          <Panel.Width value="150px" />
+                          <OnEnterPressed>
+                            <ActionEvent ReferencedAction="~handler_remove_OnEnterPressed" />
+                          </OnEnterPressed>
+                          <Bindings>
+                            <Binding SourceProperty="Data">
+                              <Expression />
+                            </Binding>
+                          </Bindings>
+                          <CssClass>
+                            <CssClassConditional>
+                              <ClassName value="m8-textbox" />
+                              <IsThemedStyle value="True" />
+                            </CssClassConditional>
+                          </CssClass>
+                        </TextBox>
+                      </Children>
+                      <CssClass>
+                        <CssClassConditional>
+                          <ClassName value="m8-panel" />
+                          <IsThemedStyle value="True" />
+                        </CssClassConditional>
+                      </CssClass>
+                    </Panel>
+                  </Content>
+                  <Bindings>
+                    <Binding SourceProperty="DataItems">
+                      <Expression>
+                        <Text><![CDATA[addedRecords]]></Text>
+                      </Expression>
+                    </Binding>
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="m8-repeater" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Repeater>
+              </Content>
+              <CssClass>
+                <CssClassConditional>
+                  <ClassName value="m8-groupbox" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </CssClass>
+            </GroupBox>
+          </Children>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="m8-panel" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Panel>
+        <Label>
+          <Name value="label1" />
+          <Data value="Report" />
+          <Heading value="h2" />
+          <Panel.Height value="#" />
+          <Panel.HorizontalAlignment value="Center" />
+          <Panel.Width value="300px" />
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="m8-label" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Label>
+        <TextBox>
+          <Name value="textBox1" />
+          <CaptionVAlign value="Middle" />
+          <IsEnabled value="False" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <Bindings>
+            <Binding SourceProperty="Data">
+              <Expression>
+                <Text><![CDATA[totalModelsCount]]></Text>
+              </Expression>
+            </Binding>
+            <Binding SourceProperty="IsRequiredMarkVisible">
+              <Expression>
+                <Text><![CDATA[totalModelsCount.isRequired()]]></Text>
+              </Expression>
+            </Binding>
+            <Binding SourceProperty="Caption">
+              <Expression>
+                <Text><![CDATA[totalModelsCount.caption()]]></Text>
+              </Expression>
+            </Binding>
+          </Bindings>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="m8-textbox" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </TextBox>
+        <Button>
+          <Name value="back" />
+          <Caption value="Back" />
+          <Panel.Height value="#" />
+          <Panel.Width value="150px" />
+          <OnClick>
+            <ActionEvent ReferencedAction="~handler_back_OnClick" />
+          </OnClick>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="m8-button" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Button>
+      </Children>
+      <CssClass>
+        <CssClassConditional>
+          <ClassName value="m8-panel" />
+          <IsThemedStyle value="True" />
+        </CssClassConditional>
+      </CssClass>
+    </Panel>
+  </Content>
+  <DataContext>
+    <DataContext>
+      <Children>
+        <Attribute>
+          <Name value="totalModelsCount" />
+          <Caption value="Total models count" />
+          <DataContextParameter.IsInput value="True" />
+          <DataContextParameter.IsInputRequired value="True" />
+          <DeclaredType>
+            <AttributeType>
+              <BaseType value="Integer" />
+            </AttributeType>
+          </DeclaredType>
+        </Attribute>
+        <Collection>
+          <Name value="addedRecords" />
+          <Caption value="Added records" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.Unit" />
+            </Include>
+          </Children>
+        </Collection>
+      </Children>
+    </DataContext>
+  </DataContext>
+  <Actions>
+    <ActionBlock>
+      <Name value="handler_back_OnClick" />
+      <IsPrivate value="True" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[navigation.main.form.go()]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="handler_remove_OnEnterPressed" />
+      <IsPrivate value="True" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[//form.actions.removeItem(params.data.index())
+
+// params.data.removeMe()
+
+// var index = params.data.index()
+// form.addedRecords.removeItem(index)]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+  </Actions>
+</Form>

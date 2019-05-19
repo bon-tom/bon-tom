@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.301"?>
+<ProjectRoot>
+  <CreatedOn value="2019-04-02T13:21:33.3497215+02:00" />
+  <ProjectName value="wh40k" />
+  <MainForm>
+    <ProjectMainFormOptions />
+  </MainForm>
+  <Options>
+    <ProjectOptions>
+      <ManageFolderContent value="False" />
+      <DataToForm>
+        <DataToFormConfiguration BoolEditor="Sf.LibraryOne.CheckBox" CollectionEditor="Repeater" ComputedText="Sf.LibraryOne.Label" DateEditor="Sf.LibraryOne.DatePicker" DateTimeEditor="Sf.LibraryOne.DatePicker" DecimalEditor="ScreenFactory.Data.Model.Ui.TextBox" EnumEditor="ScreenFactory.Data.Model.Ui.EnumCombo" IntegerEditor="ScreenFactory.Data.Model.Ui.TextBox" ReferenceEditor="Sf.LibraryOne.ReferenceCombo" StringEditor="ScreenFactory.Data.Model.Ui.TextBox" />
+      </DataToForm>
+      <Theme>
+        <ProjectTheme>
+          <ThemeName value="m8" />
+        </ProjectTheme>
+      </Theme>
+    </ProjectOptions>
+  </Options>
+  <PackageReferences>
+    <PackageReference Alias="CorePackage" IsComponentLib="True" IsReadOnly="True" IsSystem="True" Origin="system://CorePackage/CorePackage.package">
+      <ReferencedIdentity value="CorePackage.5f000000000045f00000000000000000" />
+      <ReferencedVersion value="0.0.0" />
+    </PackageReference>
+    <PackageReference Alias="main" Origin="main\main.package">
+      <ReferencedIdentity value="main.4a9bdd83fa5148a7a05d4ebab8617584" />
+      <ReferencedVersion value="0.0.0" />
+    </PackageReference>
+    <PackageReference Alias="ServerConnection" IsComponentLib="True" Origin="serverconnection\ServerConnection.package">
+      <ReferencedIdentity value="ServerConnection.db7b3eef075548988df768923691922c" />
+      <ReferencedVersion value="3.1.1" />
+    </PackageReference>
+  </PackageReferences>
+</ProjectRoot>

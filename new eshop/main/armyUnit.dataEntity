@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.301"?>
+<DataEntity>
+  <Name value="armyUnit" />
+  <Caption value="Army unit" />
+  <Children>
+    <Attribute>
+      <Name value="name" />
+      <Caption value="Name" />
+      <IsRequired value="True" />
+      <DeclaredType>
+        <AttributeType />
+      </DeclaredType>
+    </Attribute>
+    <Attribute>
+      <Name value="modelsCount" />
+      <Caption value="Models count" />
+      <IsRequired value="True" />
+      <DeclaredType>
+        <AttributeType>
+          <BaseType value="Integer" />
+        </AttributeType>
+      </DeclaredType>
+    </Attribute>
+  </Children>
+</DataEntity>
