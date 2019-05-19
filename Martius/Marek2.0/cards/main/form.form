@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.400"?>
+<Form>
+  <Name value="form" />
+  <Caption value="Form" />
+  <Content>
+    <Panel>
+      <Name value="panel1" />
+      <Orientation value="Vertical" />
+      <Panel.Height value="#" />
+      <Panel.Width value="*" />
+      <Children>
+        <Button>
+          <Name value="GoToMovies" />
+          <Caption value="Go to movies" />
+          <Panel.Height value="#" />
+          <Panel.Width value="150px" />
+          <OnClick>
+            <ActionEvent ReferencedAction="~GoToMovieForm" />
+          </OnClick>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-button" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Button>
+      </Children>
+      <CssClass>
+        <CssClassConditional>
+          <ClassName value="{theme}-panel" />
+          <IsThemedStyle value="True" />
+        </CssClassConditional>
+      </CssClass>
+    </Panel>
+  </Content>
+  <DataContext>
+    <DataContext>
+      <Children>
+        <Collection>
+          <Name value="cards" />
+          <Caption value="Cards" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.card" />
+            </Include>
+            <Computed>
+              <Name value="UnitPrice" />
+              <Caption value="Unit Price" />
+              <Expression IsValid="True">
+                <ExpressionText><![CDATA[rarity="Common" ? 25 : rarity="Uncommon" ? 50 : rarity="Rare" ? 75 : 100 ]]></ExpressionText>
+                <ResultType>
+                  <BaseType value="Integer" />
+                </ResultType>
+              </Expression>
+            </Computed>
+            <Attribute>
+              <Name value="rarity" />
+              <Caption value="Rarity" />
+              <DeclaredType>
+                <AttributeType />
+              </DeclaredType>
+            </Attribute>
+          </Children>
+        </Collection>
+      </Children>
+    </DataContext>
+  </DataContext>
+  <Actions>
+    <ActionBlock>
+      <Name value="init" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[var response = apiobjects.magicApi.getAsync("cards?set=ktk")
+
+if response.isError() then
+	system.consoleError(response.getErrorMessage())	
+else
+	form.cards.fromJson(response.extractJson("cards"))
+endif
+
+// naplnit daty, co přijdou nějakou kolekci]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="GoToMovieForm" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[navigation.main.formMovies.go()]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+  </Actions>
+</Form>
