@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.301"?>
+<Form>
+  <Name value="form" />
+  <Caption value="Form" />
+  <Content>
+    <Panel>
+      <Name value="panel1" />
+      <Orientation value="Vertical" />
+      <Panel.Height value="#" />
+      <Panel.Width value="*" />
+      <Children>
+        <DataTable>
+          <Name value="dataTable1" />
+          <Panel.Height value="#" />
+          <Panel.Width value="*" />
+          <Bindings>
+            <Binding SourceProperty="DataItems">
+              <Expression>
+                <Text><![CDATA[form.cards]]></Text>
+              </Expression>
+            </Binding>
+          </Bindings>
+          <Columns>
+            <DataColumn>
+              <Name value="dataColumn1" />
+              <Caption value="Data column 1" />
+              <Content>
+                <Label>
+                  <Name value="label1" />
+                  <Bindings>
+                    <Binding SourceProperty="Data">
+                      <Expression>
+                        <Text><![CDATA[name]]></Text>
+                      </Expression>
+                    </Binding>
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="m8-label" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Label>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="m8-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+            <DataColumn>
+              <Name value="dataColumn2" />
+              <Caption value="Data column 2" />
+              <Content>
+                <Label>
+                  <Name value="label2" />
+                  <Bindings>
+                    <Binding SourceProperty="Data">
+                      <Expression>
+                        <Text><![CDATA[artist]]></Text>
+                      </Expression>
+                    </Binding>
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="m8-label" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Label>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="m8-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+            <DataColumn>
+              <Name value="dataColumn3" />
+              <Caption value="Data column 3" />
+              <Content>
+                <Image>
+                  <Name value="image1" />
+                  <Panel.Height value="150px" />
+                  <Panel.Width value="150px" />
+                  <Bindings>
+                    <Binding SourceProperty="Src">
+                      <Expression>
+                        <Text><![CDATA[imageUrl]]></Text>
+                      </Expression>
+                    </Binding>
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="m8-image" />
+                    </CssClassConditional>
+                    <CssClassConditional>
+                      <ClassName value="cardImage" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Image>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="m8-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+          </Columns>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="m8-datatable" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </DataTable>
+      </Children>
+      <CssClass>
+        <CssClassConditional>
+          <ClassName value="m8-panel" />
+          <IsThemedStyle value="True" />
+        </CssClassConditional>
+      </CssClass>
+    </Panel>
+  </Content>
+  <DataContext>
+    <DataContext>
+      <Children>
+        <Collection>
+          <Name value="cards" />
+          <Caption value="Cards" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.card" />
+            </Include>
+          </Children>
+        </Collection>
+      </Children>
+    </DataContext>
+  </DataContext>
+  <OnCreate>
+    <ActionEvent ReferencedAction="~init" />
+  </OnCreate>
+  <Actions>
+    <ActionBlock>
+      <Name value="init" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[var response = apiobjects.magicApi.getAsync("cards?set=ktk")
+
+if response.isError() then
+	system.consoleError(response.getErrorMessage())	
+else
+	form.cards.fromJson(response.extractJson("cards"))
+endif
+
+// naplnit daty, co přijdou nějakou kolekci]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+  </Actions>
+</Form>

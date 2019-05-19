@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.301"?>
+<Package>
+  <Identity value="main.295e490b438b4467a482c7223cc6faf9" />
+  <Items>
+    <PackageItem Src="form.form">
+      <SubItems>
+        <TestDataDefinition Src="form.form.testDataDefinition1.json" />
+      </SubItems>
+    </PackageItem>
+    <PackageItem Src="globalApiObjects.globalApiObjects" />
+    <PackageItem Src="card.dataEntity" />
+    <ResourceItem ResourceName="cards.css" LinkerAction="Css" OutputFileName="cards.css" Src="cards.css" />
+  </Items>
+</Package>
