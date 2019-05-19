@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.400"?>
+<Form>
+  <Name value="formMovies" />
+  <Caption value="Form movies" />
+  <Content>
+    <Panel>
+      <Name value="panel1" />
+      <Orientation value="Vertical" />
+      <Panel.Height value="#" />
+      <Panel.Width value="*" />
+      <Children>
+        <Label>
+          <Name value="label1" />
+          <Data value="Label 1" />
+          <Panel.Height value="#" />
+          <Panel.Width value="300px" />
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="{theme}-label" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Label>
+      </Children>
+      <CssClass>
+        <CssClassConditional>
+          <ClassName value="{theme}-panel" />
+          <IsThemedStyle value="True" />
+        </CssClassConditional>
+      </CssClass>
+    </Panel>
+  </Content>
+  <DataContext>
+    <DataContext>
+      <Children>
+        <Complex>
+          <Name value="complex1" />
+          <Caption value="Complex 1" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.movie" />
+            </Include>
+          </Children>
+        </Complex>
+        <Collection>
+          <Name value="collection1" />
+          <Caption value="Collection 1" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.movie" />
+            </Include>
+          </Children>
+        </Collection>
+      </Children>
+    </DataContext>
+  </DataContext>
+  <Actions>
+    <ActionBlock>
+      <Name value="initformMovies" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[//var response = apiobjects.northwind.getAsync("Products")
+
+//var response = apiobjects.serverMovie.getAsync("list")
+//var response = apiobjects.serverMovie.getAsync("list")
+//var movieListJson = form.apiobjects.serverConnection1.getAsync("/list")
+//var response= form.apiobjects.serverMovie.getAsync("/list")
+
+var response= apiobjects.serverMovie.getAsync("/list")
+
+if response.isError() then
+	globals.errorMessage = response.getErrorMessage()
+else
+	//form.products.fromJson(response.extractJson("value"))
+	//form.complex1.fromJson(response.extractJson("value"))
+	//form.complex1.fromJson(response.extractJson())
+	
+	//form.collectionMovies.fromJson(movieListJson.getJsonString())
+    system.console(response.getJsonString())
+endif]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+  </Actions>
+</Form>
