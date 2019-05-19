@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.301"?>
+<GlobalActions>
+  <Name value="globalActions" />
+  <Actions>
+    <ActionBlock>
+      <Name value="loadCards" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[var response = apiobjects.magicApi.getAsync("cards" + this.filterUrlPart)
+
+if response.isError() then
+	system.consoleError(response.getErrorMessage())	
+else
+	result = response.extractJson("cards")	
+endif
+]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext>
+          <Children>
+            <Attribute>
+              <Name value="filterUrlPart" />
+              <Caption value="Filter url part" />
+              <DataContextParameter.IsInput value="True" />
+              <DataContextParameter.IsInputRequired value="True" />
+              <DeclaredType>
+                <AttributeType />
+              </DeclaredType>
+            </Attribute>
+            <Attribute>
+              <Name value="result" />
+              <Caption value="Result" />
+              <DataContextParameter.IsResult value="True" />
+              <DeclaredType>
+                <AttributeType />
+              </DeclaredType>
+            </Attribute>
+          </Children>
+        </ActionDataContext>
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="loadSingleCard" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[var response = apiobjects.magicApi.getAsync("cards/" + tostring(this.multiverseid))
+
+if response.isError() then
+	system.consoleError(response.getErrorMessage())	
+else
+	result = response.extractJson("card")	
+endif
+]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext>
+          <Children>
+            <Attribute>
+              <Name value="multiverseid" />
+              <Caption value="Multiverseid" />
+              <DataContextParameter.IsInput value="True" />
+              <DataContextParameter.IsInputRequired value="True" />
+              <DeclaredType>
+                <AttributeType>
+                  <BaseType value="Integer" />
+                </AttributeType>
+              </DeclaredType>
+            </Attribute>
+            <Attribute>
+              <Name value="result" />
+              <Caption value="Result" />
+              <DataContextParameter.IsResult value="True" />
+              <DeclaredType>
+                <AttributeType />
+              </DeclaredType>
+            </Attribute>
+          </Children>
+        </ActionDataContext>
+      </DataContext>
+    </ActionBlock>
+  </Actions>
+</GlobalActions>

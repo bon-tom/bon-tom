@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.301"?>
+<DataEntity>
+  <Name value="card" />
+  <Caption value="Card" />
+  <Children>
+    <Attribute>
+      <Name value="multiverseid" />
+      <Caption value="Multiverseid" />
+      <DeclaredType>
+        <AttributeType>
+          <BaseType value="Integer" />
+        </AttributeType>
+      </DeclaredType>
+    </Attribute>
+    <Attribute>
+      <Name value="name" />
+      <Caption value="Name" />
+      <DeclaredType>
+        <AttributeType />
+      </DeclaredType>
+    </Attribute>
+    <Attribute>
+      <Name value="artist" />
+      <Caption value="Artist" />
+      <DeclaredType>
+        <AttributeType />
+      </DeclaredType>
+    </Attribute>
+    <Attribute>
+      <Name value="imageUrl" />
+      <Caption value="Image url" />
+      <DeclaredType>
+        <AttributeType />
+      </DeclaredType>
+    </Attribute>
+  </Children>
+</DataEntity>

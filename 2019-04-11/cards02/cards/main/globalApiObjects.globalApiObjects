@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.301"?>
+<GlobalApiObjects>
+  <Name value="globalApiObjects" />
+  <ApiObjects>
+    <ServerConnection identity="ServerConnection.db7b3eef075548988df768923691922c">
+      <Name value="magicApi" />
+      <rootUrl value="https://api.magicthegathering.io/v1/" />
+    </ServerConnection>
+  </ApiObjects>
+</GlobalApiObjects>

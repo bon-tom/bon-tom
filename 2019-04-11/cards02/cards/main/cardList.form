@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.301"?>
+<Form>
+  <Name value="cardList" />
+  <Caption value="Card list" />
+  <Content>
+    <Panel>
+      <Name value="panel1" />
+      <Orientation value="Vertical" />
+      <Panel.Height value="#" />
+      <Panel.Width value="*" />
+      <Children>
+        <Panel>
+          <Name value="panel2" />
+          <Orientation value="Horizontal" />
+          <Panel.Height value="#" />
+          <Panel.Width value="*" />
+          <Children>
+            <Panel>
+              <Name value="textBox1_parent" />
+              <Orientation value="Vertical" />
+              <Panel.Height value="#" />
+              <Panel.Width value="50%" />
+              <Children>
+                <TextBox>
+                  <Name value="textBox2" />
+                  <CaptionVAlign value="Middle" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="*" />
+                  <Bindings>
+                    <Binding SourceProperty="Data">
+                      <Expression>
+                        <Text><![CDATA[filter.name]]></Text>
+                      </Expression>
+                    </Binding>
+                    <Binding SourceProperty="IsRequiredMarkVisible">
+                      <Expression>
+                        <Text><![CDATA[filter.name.isRequired()]]></Text>
+                      </Expression>
+                    </Binding>
+                    <Binding SourceProperty="Caption">
+                      <Expression>
+                        <Text><![CDATA[filter.name.caption()]]></Text>
+                      </Expression>
+                    </Binding>
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="m8-textbox" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </TextBox>
+                <TextBox>
+                  <Name value="textBox1" />
+                  <CaptionLength value="200px" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="*" />
+                  <Bindings>
+                    <Binding SourceProperty="Data">
+                      <Expression>
+                        <Text><![CDATA[filter.set]]></Text>
+                      </Expression>
+                    </Binding>
+                    <Binding SourceProperty="IsRequiredMarkVisible">
+                      <Expression>
+                        <Text><![CDATA[filter.set.isRequired()]]></Text>
+                      </Expression>
+                    </Binding>
+                    <Binding SourceProperty="Caption">
+                      <Expression>
+                        <Text><![CDATA[filter.set.caption()]]></Text>
+                      </Expression>
+                    </Binding>
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="m8-textbox" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </TextBox>
+              </Children>
+              <CssClass>
+                <CssClassConditional>
+                  <ClassName value="m8-panel" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </CssClass>
+            </Panel>
+            <Panel>
+              <Name value="panel3" />
+              <Orientation value="Horizontal" />
+              <Panel.Height value="#" />
+              <Panel.Width value="*" />
+              <CssClass>
+                <CssClassConditional>
+                  <ClassName value="m8-panel" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </CssClass>
+            </Panel>
+            <Button>
+              <Name value="search" />
+              <Caption value="Search" />
+              <Panel.Height value="#" />
+              <Panel.VerticalAlignment value="Bottom" />
+              <Panel.Width value="150px" />
+              <OnClick>
+                <ActionEvent ReferencedAction="~handler_search_OnClick" />
+              </OnClick>
+              <CssClass>
+                <CssClassConditional>
+                  <ClassName value="m8-button" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </CssClass>
+            </Button>
+          </Children>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="m8-panel" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Panel>
+        <DataTable>
+          <Name value="dataTable1" />
+          <Panel.Height value="#" />
+          <Panel.Width value="*" />
+          <OnRowActivate>
+            <ActionEvent ReferencedAction="~handler_dataTable1_OnRowActivate" />
+          </OnRowActivate>
+          <Bindings>
+            <Binding SourceProperty="DataItems">
+              <Expression>
+                <Text><![CDATA[form.cards]]></Text>
+              </Expression>
+            </Binding>
+          </Bindings>
+          <Columns>
+            <DataColumn>
+              <Name value="dataColumn1" />
+              <Caption value="Data column 1" />
+              <Content>
+                <Label>
+                  <Name value="label1" />
+                  <Bindings>
+                    <Binding SourceProperty="Data">
+                      <Expression>
+                        <Text><![CDATA[name]]></Text>
+                      </Expression>
+                    </Binding>
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="m8-label" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Label>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="m8-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+            <DataColumn>
+              <Name value="dataColumn2" />
+              <Caption value="Data column 2" />
+              <Content>
+                <Label>
+                  <Name value="label2" />
+                  <Bindings>
+                    <Binding SourceProperty="Data">
+                      <Expression>
+                        <Text><![CDATA[artist]]></Text>
+                      </Expression>
+                    </Binding>
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="m8-label" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Label>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="m8-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+            <DataColumn>
+              <Name value="dataColumn3" />
+              <Caption value="Data column 3" />
+              <Content>
+                <Image>
+                  <Name value="image1" />
+                  <Panel.Height value="150px" />
+                  <Panel.Width value="150px" />
+                  <Bindings>
+                    <Binding SourceProperty="Src">
+                      <Expression>
+                        <Text><![CDATA[imageUrl]]></Text>
+                      </Expression>
+                    </Binding>
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="m8-image" />
+                    </CssClassConditional>
+                    <CssClassConditional>
+                      <ClassName value="cardImage" />
+                    </CssClassConditional>
+                  </CssClass>
+                </Image>
+              </Content>
+              <HeaderCssClass>
+                <CssClassConditional>
+                  <ClassName value="m8-datacolumn" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </HeaderCssClass>
+            </DataColumn>
+          </Columns>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="m8-datatable" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </DataTable>
+      </Children>
+      <CssClass>
+        <CssClassConditional>
+          <ClassName value="m8-panel" />
+          <IsThemedStyle value="True" />
+        </CssClassConditional>
+      </CssClass>
+    </Panel>
+  </Content>
+  <DataContext>
+    <DataContext>
+      <Children>
+        <Collection>
+          <Name value="cards" />
+          <Caption value="Cards" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.card" />
+            </Include>
+          </Children>
+        </Collection>
+        <Complex>
+          <Name value="filter" />
+          <Caption value="Filter" />
+          <Children>
+            <Attribute>
+              <Name value="name" />
+              <Caption value="Name" />
+              <DeclaredType>
+                <AttributeType />
+              </DeclaredType>
+            </Attribute>
+            <Attribute>
+              <Name value="set" />
+              <Caption value="Set" />
+              <DeclaredType>
+                <AttributeType>
+                  <StrMaxLength value="3" />
+                  <StrMinLength value="3" />
+                </AttributeType>
+              </DeclaredType>
+            </Attribute>
+          </Children>
+        </Complex>
+      </Children>
+    </DataContext>
+  </DataContext>
+  <Actions>
+    <ActionBlock>
+      <Name value="handler_search_OnClick" />
+      <IsPrivate value="True" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[if form.filter.isValid() then
+	var x = form.actions.composeFilterUrlPart()
+	var data = actions.loadCards(x)
+	form.cards.fromJson(data)	
+else
+	form.filter.setTouched(true)
+endif]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="composeFilterUrlPart" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[var url = ""
+var questionMarkAdded = false
+
+if form.filter.set.hasValue() then
+	url = url + "?set=" + form.filter.set
+	questionMarkAdded = true
+endif
+
+if form.filter.name.hasValue() then
+	if not questionMarkAdded then
+		url = url + "?"
+	else
+		url = url + "&"
+	endif
+	url = url + "name=" + form.filter.name
+endif
+
+result = url]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext>
+          <Children>
+            <Attribute>
+              <Name value="result" />
+              <Caption value="Result" />
+              <DataContextParameter.IsResult value="True" />
+              <DeclaredType>
+                <AttributeType />
+              </DeclaredType>
+            </Attribute>
+          </Children>
+        </ActionDataContext>
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="handler_dataTable1_OnRowActivate" />
+      <IsPrivate value="True" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[navigation.main.cardDetail.go(params.data.multiverseid)
+
+// system.console(tostring(params.data.multiverseid))]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+  </Actions>
+</Form>

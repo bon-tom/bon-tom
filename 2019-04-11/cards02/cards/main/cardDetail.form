@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.301"?>
+<Form>
+  <Name value="cardDetail" />
+  <Caption value="Card detail" />
+  <Content>
+    <Panel>
+      <Name value="panel1" />
+      <Orientation value="Vertical" />
+      <Panel.Height value="#" />
+      <Panel.Width value="*" />
+      <Children>
+        <HyperLink>
+          <Name value="hyperLink1" />
+          <Data value="back" />
+          <Panel.Height value="#" />
+          <Panel.Width value="150px" />
+          <OnClick>
+            <ActionEvent ReferencedAction="~handler_hyperLink1_OnClick" />
+          </OnClick>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="m8-hyperlink" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </HyperLink>
+        <Panel>
+          <Name value="panel2_parent" />
+          <Orientation value="Horizontal" />
+          <Panel.Height value="#" />
+          <Panel.Width value="*" />
+          <Children>
+            <Panel>
+              <Name value="panel2" />
+              <Orientation value="Vertical" />
+              <Panel.Height value="#" />
+              <Panel.Width value="50%" />
+              <Children>
+                <LabeledText identity="labeledText.a92a691d6915448ebf9f0b804ce6a733">
+                  <Name value="labeledText2" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="*" />
+                  <Bindings>
+                    <Binding SourceProperty="Data">
+                      <Expression>
+                        <Text><![CDATA[card.name]]></Text>
+                      </Expression>
+                    </Binding>
+                    <Binding SourceProperty="IsRequiredMarkVisible">
+                      <Expression>
+                        <Text><![CDATA[card.name.isRequired()]]></Text>
+                      </Expression>
+                    </Binding>
+                    <Binding SourceProperty="Caption">
+                      <Expression>
+                        <Text><![CDATA[card.name.caption()]]></Text>
+                      </Expression>
+                    </Binding>
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="m8-labeledtext" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </LabeledText>
+                <LabeledText identity="labeledText.a92a691d6915448ebf9f0b804ce6a733">
+                  <Name value="labeledText3" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="*" />
+                  <Bindings>
+                    <Binding SourceProperty="Data">
+                      <Expression>
+                        <Text><![CDATA[card.artist]]></Text>
+                      </Expression>
+                    </Binding>
+                    <Binding SourceProperty="IsRequiredMarkVisible">
+                      <Expression>
+                        <Text><![CDATA[card.artist.isRequired()]]></Text>
+                      </Expression>
+                    </Binding>
+                    <Binding SourceProperty="Caption">
+                      <Expression>
+                        <Text><![CDATA[card.artist.caption()]]></Text>
+                      </Expression>
+                    </Binding>
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="m8-labeledtext" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </LabeledText>
+                <LabeledText identity="labeledText.a92a691d6915448ebf9f0b804ce6a733">
+                  <Name value="labeledText5" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="*" />
+                  <Bindings>
+                    <Binding SourceProperty="Data">
+                      <Expression>
+                        <Text><![CDATA[card.rarity]]></Text>
+                      </Expression>
+                    </Binding>
+                    <Binding SourceProperty="IsRequiredMarkVisible">
+                      <Expression>
+                        <Text><![CDATA[card.rarity.isRequired()]]></Text>
+                      </Expression>
+                    </Binding>
+                    <Binding SourceProperty="Caption">
+                      <Expression>
+                        <Text><![CDATA[card.rarity.caption()]]></Text>
+                      </Expression>
+                    </Binding>
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="m8-labeledtext" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </LabeledText>
+                <LabeledText identity="labeledText.a92a691d6915448ebf9f0b804ce6a733">
+                  <Name value="labeledText6" />
+                  <Panel.Height value="#" />
+                  <Panel.Width value="*" />
+                  <Bindings>
+                    <Binding SourceProperty="Data">
+                      <Expression>
+                        <Text><![CDATA[card.setName]]></Text>
+                      </Expression>
+                    </Binding>
+                    <Binding SourceProperty="IsRequiredMarkVisible">
+                      <Expression>
+                        <Text><![CDATA[card.setName.isRequired()]]></Text>
+                      </Expression>
+                    </Binding>
+                    <Binding SourceProperty="Caption">
+                      <Expression>
+                        <Text><![CDATA[card.setName.caption()]]></Text>
+                      </Expression>
+                    </Binding>
+                  </Bindings>
+                  <CssClass>
+                    <CssClassConditional>
+                      <ClassName value="m8-labeledtext" />
+                      <IsThemedStyle value="True" />
+                    </CssClassConditional>
+                  </CssClass>
+                </LabeledText>
+              </Children>
+              <CssClass>
+                <CssClassConditional>
+                  <ClassName value="m8-panel" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </CssClass>
+            </Panel>
+            <Image>
+              <Name value="image1" />
+              <Panel.Height value="300px" />
+              <Panel.Width value="300px" />
+              <Bindings>
+                <Binding SourceProperty="Src">
+                  <Expression>
+                    <Text><![CDATA[form.card.imageUrl]]></Text>
+                  </Expression>
+                </Binding>
+              </Bindings>
+              <CssClass>
+                <CssClassConditional>
+                  <ClassName value="m8-image" />
+                  <IsThemedStyle value="True" />
+                </CssClassConditional>
+              </CssClass>
+            </Image>
+          </Children>
+          <CssClass>
+            <CssClassConditional>
+              <ClassName value="m8-panel" />
+              <IsThemedStyle value="True" />
+            </CssClassConditional>
+          </CssClass>
+        </Panel>
+      </Children>
+      <CssClass>
+        <CssClassConditional>
+          <ClassName value="m8-panel" />
+          <IsThemedStyle value="True" />
+        </CssClassConditional>
+      </CssClass>
+    </Panel>
+  </Content>
+  <DataContext>
+    <DataContext>
+      <Children>
+        <Attribute>
+          <Name value="multiverseid" />
+          <Caption value="Multiverseid" />
+          <DataContextParameter.IsInput value="True" />
+          <DataContextParameter.IsInputRequired value="True" />
+          <DeclaredType>
+            <AttributeType>
+              <BaseType value="Integer" />
+            </AttributeType>
+          </DeclaredType>
+        </Attribute>
+        <Complex>
+          <Name value="card" />
+          <Caption value="Card" />
+          <Children>
+            <Include>
+              <Include reference="+DataEntities.card" />
+            </Include>
+            <Attribute>
+              <Name value="rarity" />
+              <Caption value="Rarity" />
+              <DeclaredType>
+                <AttributeType />
+              </DeclaredType>
+            </Attribute>
+            <Attribute>
+              <Name value="setName" />
+              <Caption value="Set name" />
+              <DeclaredType>
+                <AttributeType />
+              </DeclaredType>
+            </Attribute>
+          </Children>
+        </Complex>
+      </Children>
+    </DataContext>
+  </DataContext>
+  <OnCreate>
+    <ActionEvent ReferencedAction="~init" />
+  </OnCreate>
+  <Actions>
+    <ActionBlock>
+      <Name value="init" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[var data = actions.loadSingleCard(form.multiverseid)
+form.card.fromJson(data)]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+    <ActionBlock>
+      <Name value="handler_hyperLink1_OnClick" />
+      <IsPrivate value="True" />
+      <ActionLangBody IsValid="True">
+        <Script><![CDATA[navigation.main.cardList.go()]]></Script>
+      </ActionLangBody>
+      <DataContext>
+        <ActionDataContext />
+      </DataContext>
+    </ActionBlock>
+  </Actions>
+</Form>
