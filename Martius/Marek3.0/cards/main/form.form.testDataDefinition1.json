@@ -1,0 +1,14 @@
+{
+    "cards": [
+        {
+            "name": "amet imperdiet justo risus pulvinar tempus porta",
+            "artist": "quis consectetur felis condimentum lacus accumsan",
+            "imageUrl": "erat augue nunc aliquet sed ac"
+        },
+        {
+            "name": "In laoreet volutpat vestibulum quis Duis lectus",
+            "artist": "gravida aliquet",
+            "imageUrl": "non Sed pharetra"
+        }
+    ]
+}
