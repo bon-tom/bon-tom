@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?data-format version="0.400"?>
+<Package>
+  <Identity value="main.f7d31f056d6b42a29b16cd4ccb7ef711" />
+  <Items>
+    <PackageItem Src="MasterForm.form" />
+    <PackageItem Src="movies.form" />
+    <PackageItem Src="globalApiObjects.globalApiObjects" />
+    <PackageItem Src="globalVariables.globalVariables" />
+    <PackageItem Src="Movies.dataEntity" />
+  </Items>
+</Package>
