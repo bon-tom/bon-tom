@@ -1,0 +1,35 @@
+var movieListJson = form.apiobjects.serverConnection1.getAsync("/list")
+
+if form.filter.name.hasValue() then
+
+    form.collectionMovies.clear()
+
+    var searchThisName = tolower(form.filter.name)
+
+    form.searchedMovies.fromJson(movieListJson.getJsonString())
+
+        foreach item in form.searchedMovies do
+
+            var itemNameLowerCase = tolower(item.name)
+
+            if indexOf(itemNameLowerCase, searchThisName) <> 0 then
+
+                var collectionItem = form.collectionMovies.addItem()
+
+                    collectionItem.id = item.id
+
+                    collectionItem.name = item.name
+
+                    collectionItem.type = item.type
+
+                    collectionItem.rating.score = item.rating.score
+
+                    collectionItem.yearOfRelease = item.yearOfRelease
+
+                    //collectionItem.starring = item.starring
+
+                    var stars = item.starring.toJson()
+
+                    collectionItem.starring.fromJson(stars)
+
+            endif

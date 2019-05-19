@@ -1,0 +1,30 @@
+
+//searchBtn.OnClick
+
+navigation.main.filtered.go(form.addFlight.acftType, form.addFlight.origin, form.addFlight.destination)
+
+//addFlight je complex
+
+//action1
+system.console(tostring(form.acftType.hasValue()))
+system.console(tostring(form.origin.hasValue()))
+system.console(tostring(form.destination.hasValue()))
+
+var filter = globals.flightRecord.where(true)
+if form.acftType.hasValue() then
+	filter = filter.where(current.acftType = form.acftType)
+endif
+
+if form.origin.hasValue() then
+	filter = filter.where(current.origin = form.origin)
+endif
+
+if form.destination.hasValue() then
+	filter = filter.where(current.destination = form.destination)
+endif
+
+
+var filterByType = globals.flightRecord.where(acftType = form.acftType).toJson()
+system.console(filterByType)
+form.collection.clear()
+form.collection.fromJson(filterByType)
